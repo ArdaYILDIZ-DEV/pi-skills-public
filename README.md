@@ -32,6 +32,18 @@ PASS browsing-reddit (automatic)
 PASS writing-great-system-prompts (automatic)
 ```
 
+## Customizing triggers for English-only environments
+
+Several skills in this collection include bilingual trigger phrases (Turkish and English) in their `description` frontmatter (such as `"tasarımı düzelt"`, `"yorumları temizle"`, or `"PR açıklaması yaz"`).
+
+If you converse with your coding agent strictly in English, you can remove non-English phrases to keep frontmatter clean and improve prompt matching precision.
+
+You can ask your agent to update all descriptions automatically with this prompt:
+
+```text
+Inspect all `SKILL.md` files in this repository. In each frontmatter `description` field, remove all Turkish phrases and trigger keywords (such as "tasarımı düzelt", "yorumları temizle", "PR açıklaması yaz", "bunu doğal İngilizce yaz"), while preserving all English triggers, capabilities, and operational constraints intact. Once updated, run `node writing-great-skills/scripts/validate.mjs */` to verify that all frontmatter schemas remain valid.
+```
+
 ## Available skills
 
 | Skill | Primary responsibility | Key triggers |
@@ -65,18 +77,6 @@ Most skills are self-contained prompt and reference packs. A few rely on externa
 | `conventional-commit` | `git` | Repository status and diff inspection | System package manager |
 | `tmux-orchestration` | `tmux` | Background session and socket multiplexing | System package manager |
 | `writing-great-skills` | `node` (v18+) | Running `scripts/validate.mjs` | Node.js runtime |
-
-## Customizing triggers for English-only environments
-
-Several skills in this collection include bilingual trigger phrases (Turkish and English) in their `description` frontmatter (such as `"tasarımı düzelt"`, `"yorumları temizle"`, or `"PR açıklaması yaz"`).
-
-If you converse with your coding agent strictly in English, you can remove non-English phrases to keep frontmatter clean and improve prompt matching precision.
-
-You can ask your agent to update all descriptions automatically with this prompt:
-
-```text
-Inspect all `SKILL.md` files in this repository. In each frontmatter `description` field, remove all Turkish phrases and trigger keywords (such as "tasarımı düzelt", "yorumları temizle", "PR açıklaması yaz", "bunu doğal İngilizce yaz"), while preserving all English triggers, capabilities, and operational constraints intact. Once updated, run `node writing-great-skills/scripts/validate.mjs */` to verify that all frontmatter schemas remain valid.
-```
 
 ## Skill structure
 
