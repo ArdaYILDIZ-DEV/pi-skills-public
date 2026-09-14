@@ -1,116 +1,116 @@
-# İlkelerden web kararlarına
+# From principles to web decisions
 
-## Kaynak ve güven düzeyi
+## Source and confidence level
 
-Kaynak: paket oluşturulurken çalışma klasöründe bulunan `PRINCIPLES.md`, “Apple Tasarım Sistemi, İlkeleri ve Renk Kütüphanesi Kılavuzu”. Kaynak dosyanın SHA-256 özeti: `4360a2972918b680ec6722ddfa9113ceb7e24fe464a1354106b767edb3bbdfcd`.
+Source: the `PRINCIPLES.md` found in the working folder when the package was created, “Apple Design System, Principles, and Color Library Guide.” SHA-256 of the source file: `4360a2972918b680ec6722ddfa9113ceb7e24fe464a1354106b767edb3bbdfcd`.
 
-Belgede birincil kaynak bağlantıları veya hangi işletim sistemi sürümünün esas alındığı belirtilmiyor. Bu paket hazırlanırken haricî Apple belgeleri veya adı geçen çalışmalar doğrulanmadı. Aşağıdaki öneriler kaynak belgenin web için editoryal uyarlamasıdır; Apple'a ait normatif gereksinimler değildir. Paket çalışmak için özgün dosyanın aynı klasörde bulunmasına ihtiyaç duymaz.
+The document states no primary-source links and no base OS version. While preparing this package, external Apple documents and cited studies were not verified. The recommendations below are an editorial web adaptation of the source document; they are not normative Apple requirements. The package does not need the original file in the same folder to work.
 
-Üç tür bilgiyi ayır:
+Distinguish three kinds of information:
 
-- **Tasarım ilkesi:** Amaç, tutarlılık, geri bildirim gibi karar vermeye yarayan rehber.
-- **Kaynak değeri:** Belgede geçen platform ölçüsü, renk veya animasyon parametresi; bağlamı doğrulanmadan standart kabul edilmez.
-- **Web uyarlaması:** Responsive düzen, semantik HTML, font fallback'i ve tercih sorguları gibi bu paketin önerileri.
+- **Design principle:** guidance that aids decisions, such as purpose, consistency, and feedback.
+- **Source value:** a platform metric, color, or animation parameter appearing in the document; do not treat it as a standard without verified context.
+- **Web adaptation:** this package's recommendations, such as responsive layout, semantic HTML, font fallbacks, and preference queries.
 
-## Sekiz ilkenin uygulaması
+## Applying the eight principles
 
-| Kaynaktaki ilke | Web'deki karar | İncelenebilir sonuç |
+| Source principle | Web decision | Reviewable outcome |
 | --- | --- | --- |
-| Purpose / Amaç | İçeriği ana kullanıcı görevine göre sırala. | Kullanıcı başlangıç noktasını ve temel eylemi ayırt edebilir. |
-| Agency / Kullanıcı iradesi | İptal, geri dönüş ve düzeltme yollarını görünür tut. | Kullanıcı akıştan çıkabilir; işlem sonucu ve geri alınabilirliği anlaşılır. |
-| Responsibility / Sorumluluk | İzin, ücret ve veri kullanımını dürüstçe açıkla. | İzin nedeni ilgili eylemle birlikte sunulur; aldatıcı varsayılan yoktur. |
-| Familiarity / Tanıdıklık | Yerleşik web kalıplarını ve anlamlı etiketleri kullan. | Link gezinir, buton eylem yapar; ikonların anlamı tahmine bırakılmaz. |
-| Flexibility / Esneklik | Girdi türü, ekran, metin boyutu ve tercihleri destekle. | Temel görev fareye, hover'a veya sabit genişliğe bağımlı değildir. |
-| Simplicity / Sadelik | Önceliklendir; gereksiz tekrarları kaldır. | Gerekli bilgi yalnızca minimal görünmek için gizlenmez. |
-| Craft / Özen | Hizalama, durumlar, metin kırılması ve geçiş ayrıntılarını düzelt. | Uzun başlık, yüklenme, boş sonuç ve hata durumları bozulmaz. |
-| Delight / Memnuniyet | Hızlı, anlaşılır ve saygılı etkileşimi öncele. | Süs animasyonları görevi geciktirmez; gereksiz sürpriz yoktur. |
+| Purpose | Order content by the primary user task. | The user can distinguish the starting point and the primary action. |
+| Agency | Keep cancellation, return, and correction paths visible. | The user can leave the flow; the action outcome and reversibility are clear. |
+| Responsibility | Honestly explain permissions, fees, and data use. | The permission reason appears with the relevant action; there are no deceptive defaults. |
+| Familiarity | Use established web patterns and meaningful labels. | Links navigate, buttons act; icon meanings are not left to guesswork. |
+| Flexibility | Support input types, screens, text sizes, and preferences. | The core task does not depend on a mouse, hover, or fixed width. |
+| Simplicity | Prioritize; remove needless repetition. | Required information is not hidden merely to look minimal. |
+| Craft | Fix alignment, states, text wrapping, and transition details. | Long headings, loading, empty-result, and error states do not break. |
+| Delight | Prioritize fast, clear, and respectful interaction. | Decorative animations do not delay the task; there are no needless surprises. |
 
-Bu sekiz başlığın güncel HIG'nin resmî ve eksiksiz listesi olduğu iddiasını yineleme; bunun için ayrı doğrulama gerekir.
+Do not repeat any claim that these eight headings are the current HIG's official and complete list; that needs separate verification.
 
-## Tarihsel ilkeler ve Rams
+## Historical principles and Rams
 
-Kaynakta estetik bütünlük, tutarlılık, doğrudan manipülasyon, geri bildirim, metaforlar ve kullanıcı kontrolü birlikte ele alınıyor. Web uyarlaması:
+The source treats aesthetic integrity, consistency, direct manipulation, feedback, metaphors, and user control together. Web adaptation:
 
-- Üretkenlik sayfasıyla eğlence sayfasına aynı görünümü dayatma.
-- Aynı işlem aynı bileşen, ad ve davranışla sunulsun.
-- Sürükleme varsa sürüklemeden çalışan alternatif de sağla; klavye veya butonlarla sıralama örneğin.
-- İşleme anında anlaşılır yanıt ver; ağ işlemi bitmeden başarı gösterme.
-- Dosya veya sepet gibi metaforları anlaşılırlık sağladığında kullan, fiziksel nesnenin bütün görünümünü kopyalama.
+- Do not impose the same look on a productivity page and an entertainment page.
+- Present the same operation with the same component, name, and behavior.
+- Where dragging exists, also provide an alternative that works without dragging; for example ordering with keyboard or buttons.
+- Give a clear response at processing time; do not show success before the network operation completes.
+- Use metaphors such as files or carts when they aid clarity; do not copy the whole look of the physical object.
 
-Rams'ın kaynakta listelenen on ilkesi şu sorulara dönüştürülebilir:
+Rams's ten principles listed in the source can be turned into these questions:
 
-1. **Yenilik:** Yeni yaklaşım gerçek bir kullanıcı sorununu çözüyor mu?
-2. **Kullanışlılık:** Ana görevi kolaylaştırıyor mu?
-3. **Estetik:** Görsel bütünlük ürünün kullanımına hizmet ediyor mu?
-4. **Anlaşılabilirlik:** İçerik ve denetimler ne yaptıklarını anlatıyor mu?
-5. **Göze batmama:** Arayüz içerikten daha fazla dikkat istiyor mu?
-6. **Dürüstlük:** Gerçekte olmayan fayda, sonuç veya sosyal kanıt sunuluyor mu?
-7. **Uzun ömür:** Geçici bir efekt olmadan da düzen işe yarıyor mu?
-8. **Ayrıntılarda tutarlılık:** Kenar durumları ana ekran kadar özenli mi?
-9. **Kaynak sorumluluğu:** Gereksiz görsel, video, JavaScript veya sürekli animasyon ekleniyor mu? Ölçmeden çevresel kazanç iddia etme.
-10. **Daha az, daha iyi:** Bir öğeyi çıkarmak görevi zayıflatmadan karmaşıklığı azaltıyor mu?
+1. **Innovation:** Does the new approach solve a real user problem?
+2. **Usefulness:** Does it make the primary task easier?
+3. **Aesthetics:** Does visual integrity serve the product's use?
+4. **Understandability:** Do content and controls explain what they do?
+5. **Unobtrusiveness:** Does the interface demand more attention than the content?
+6. **Honesty:** Is any nonexistent benefit, outcome, or social proof presented?
+7. **Longevity:** Does the layout work without a temporary effect?
+8. **Thoroughness:** Are edge cases as careful as the main screen?
+9. **Environmental responsibility:** Is needless imagery, video, JavaScript, or continuous animation added? Do not claim environmental gains without measuring.
+10. **Less, but better:** Does removing an item reduce complexity without weakening the task?
 
-Apple, Braun ve Rams arasındaki tarihsel etki anlatısını bu pratik kontrol sorularından ayrı tut; bu paket tarih araştırması değildir.
+Keep the historical influence narrative between Apple, Braun, and Rams separate from these practical check questions; this package is not historical research.
 
-## Yerleşim ve algısal gruplama
+## Layout and perceptual grouping
 
-Kaynağın Gestalt başlıklarını doğrudan kullanılabilir kararlar olarak ele al:
+Treat the source's Gestalt headings as directly usable decisions:
 
-- **Yakınlık:** Aynı grubun iç boşluğu gruplar arası boşluktan genellikle küçüktür.
-- **Benzerlik:** Görsel benzerlik aynı rolü veya davranışı temsil etsin.
-- **Devamlılık:** Hizalanmış listeler ve tutarlı sütunlar taramayı kolaylaştırsın.
-- **Kapanma:** Bir grubu sınır, boşluk veya yüzeyle anlaşılır kıl; zorunlu olarak kart çizme.
-- **Şekil/zemin:** İçeriği kontrast ve katmanla ayır. Blur bunun önkoşulu değildir.
-- **Ortak hareket:** Birlikte hareket eden öğelerin ilişkisi anlamlı olsun; azaltılmış hareket altında ilişki yine anlaşılabilsin.
+- **Proximity:** Inner spacing of the same group is usually smaller than spacing between groups.
+- **Similarity:** Let visual similarity represent the same role or behavior.
+- **Continuity:** Let aligned lists and consistent columns ease scanning.
+- **Closure:** Make a group clear with a boundary, spacing, or surface; do not draw a card by obligation.
+- **Figure/ground:** Separate content with contrast and layering. Blur is not a precondition for this.
+- **Common fate:** Let the relationship of jointly moving items be meaningful; the relationship must remain understandable under reduced motion.
 
-Kaynakta Reber, Schwarz ve Winkielman (2004) adıyla anılan akıcılık açıklaması burada bağımsız doğrulanmış bir etki büyüklüğü olarak kullanılmaz. “Bu düzen beyni şu kadar rahatlatır” gibi ölçülmemiş sonuçlar üretme.
+The fluency account cited in the source as Reber, Schwarz, and Winkielman (2004) is not used here as an independently verified effect size. Do not produce unmeasured claims such as “this layout relaxes the brain by this much.”
 
-### Ölçülerin web'e çevrilmesi
+### Translating measurements to the web
 
-| Kaynaktaki öneri | Web'de kullanım |
+| Source recommendation | Web use |
 | --- | --- |
-| 4/8 noktalı ölçek | `rem` tabanlı boşluk tokenlarına başlangıç; her ölçüyü bu ızgaraya zorlamama. |
-| iPhone 16pt, iPad 20pt kenar boşluğu | Cihaz adına bağlı sabit değer yerine akışkan sayfa padding'i ve içerik genişliği. |
-| Kart içi 16/20pt | İçerik yoğunluğuna göre ayarlanan ortak bileşen boşluğu. |
-| 44 × 44pt dokunma hedefi | Dokunma için 44 × 44 CSS px tercih hedefi; birim eşitliği iddiası değil. |
-| Sabit çentik, home bar ve tab bar yükseklikleri | Web'e kopyalama. Gerekiyorsa `env(safe-area-inset-bottom, 0px)` gibi tarayıcı değerleri. |
+| 4/8-point scale | Starting point for `rem`-based spacing tokens; do not force every measure onto this grid. |
+| iPhone 16pt, iPad 20pt margins | Fluid page padding and content width instead of device-bound fixed values. |
+| 16/20pt inside cards | Shared component spacing adjusted to content density. |
+| 44 × 44pt touch target | 44 × 44 CSS px preferred target for touch; not a unit-equivalence claim. |
+| Fixed notch, home-bar, and tab-bar heights | Do not copy to the web. Where needed use browser values such as `env(safe-area-inset-bottom, 0px)`. |
 
-CSS `pt`, iOS yerleşim noktası, CSS px ve fiziksel ekran pikseli aynı kavram değildir. Yazı ve boşluklarda göreli birimler kullan; kök font boyutunu kullanıcı tercihini etkisizleştirmek için sabitleme.
+CSS `pt`, iOS layout points, CSS px, and physical screen pixels are not the same concept. Use relative units for type and spacing; do not fix the root font size in a way that defeats user preference.
 
-## Tipografi
+## Typography
 
-Kaynak, Large Title 34/41, Title 1 28/34, Title 2 22/28, Title 3 20/25, Headline ve Body 17/22, Callout 16/21, Subhead 15/20, Footnote 13/18, Caption 1 12/16 ve Caption 2 11/13 değerlerini iOS point cinsinden sunuyor. Bunlar web'in zorunlu font veya satır yüksekliği ölçeği değildir.
+The source presents Large Title 34/41, Title 1 28/34, Title 2 22/28, Title 3 20/25, Headline and Body 17/22, Callout 16/21, Subhead 15/20, Footnote 13/18, Caption 1 12/16, and Caption 2 11/13 in iOS points. These are not the web's mandatory font or line-height scale.
 
-- Önce projenin marka fontunu koru. Kısıt yoksa yerel `system-ui` ailesini kullan; SF Pro dosyasını indirip dağıtma.
-- Başlık, gövde ve yardımcı metin rollerini tanımla. Mobil ve masaüstü başlıkları için gerekirse sınırlı `clamp()` kullan; sabit `vw` ile erişilebilir büyümeyi engelleme.
-- Kaynaktaki tracking değerlerini başka fonta taşıma. Font, dil ve boyutta gerçek okunabilirliği incele.
-- Gövde satır yüksekliğini içerik için yeterli tut; Türkçe karakterler, çok satırlı etiketler ve uzun sayılarla dene.
-- Metin büyüyünce kesilen sabit yüksekliklerden kaçın. Küçük meta metinlerle zayıf kontrastı birleştirme.
+- Preserve the project's brand font first. With no constraints use the local `system-ui` stack; do not download and distribute the SF Pro file.
+- Define heading, body, and helper-text roles. Where needed use limited `clamp()` for mobile and desktop headings; do not block accessible growth with fixed `vw`.
+- Do not carry the source's tracking values to another font. Review real readability in the font, language, and size.
+- Keep body line-height sufficient for the content; test with Turkish characters, multiline labels, and long numbers.
+- Avoid fixed heights that clip when text grows. Do not combine small meta text with weak contrast.
 
-## Köşeler ve geometri
+## Corners and geometry
 
-Kaynak G1/G2 sürekliliği, süperelips ve Figma %60 smoothing üzerinden yuvarlatmayı açıklıyor. Süperelips, Euler spirali ve Apple'ın gerçek köşe uygulamasını birbirinin kanıtlanmış eşdeğeri gibi sunma. %60 değerini tüm iOS veya web bileşenlerinin zorunlu standardı sayma.
+The source explains rounding through G1/G2 continuity, superellipse, and Figma 60% smoothing. Do not present the superellipse, Euler spiral, and Apple's actual corner implementation as proven equivalents of each other. Do not treat the 60% value as the mandatory standard for all iOS or web components.
 
-- Standart `border-radius`, çoğu web bileşeni için yeterli ve meşru varsayılandır.
-- Birkaç rol tabanlı radius kullan; her paneli pill veya aynı büyük radius yapma.
-- İç/dış köşe ilişkisinde `dış radius ≈ iç radius + aralık` tutarlı paralel sınırlar için rehberdir; border kalınlığı, asimetrik padding ve farklı şekillerde gözle kontrol et.
-- Özel sürekli köşe ancak tasarım gerektiriyorsa ve tarayıcı desteği doğrulanabiliyorsa progressive enhancement olarak eklenir. Focus halkasını veya içeriği kesen clip-path kullanma.
+- Standard `border-radius` is a sufficient and legitimate default for most web components.
+- Use a few role-based radii; do not make every panel a pill or the same large radius.
+- For the inner/outer corner relationship, `outer radius ≈ inner radius + gap` is guidance for consistent parallel borders; visually check border thickness, asymmetric padding, and differing shapes.
+- Add a custom continuous corner only as progressive enhancement when the design requires it and browser support is verifiable. Do not use a clip-path that cuts the focus ring or content.
 
-Bar & Neta (2006/2007) ve `p < 0.03` iddiaları kaynak belgedeki atıflardır; çalışmalar bu paket için incelenmedi. “Keskin köşeler korku yaratır”, “eğri köşeler güven sağlar” veya “G2 dönüşümü artırır” sonuçlarını kullanıcı arayüzleri için kurulmuş nedensellik gibi aktarma.
+The Bar & Neta (2006/2007) and `p < 0.03` claims are citations in the source document; the studies were not reviewed for this package. Do not report conclusions such as “sharp corners create fear,” “curved corners build trust,” or “G2 increases conversion” as established causality for user interfaces.
 
-## Hareket
+## Motion
 
-Kaynağın fizik modeli `m·x'' + c·x' + k·x = 0`; sönümleme oranı yaklaşık 1 veya 0.75–0.80, response değeri 0.3–0.45 saniye olarak veriliyor. Bunlar kaynakta sunulan ayarlardır, bütün Apple animasyonlarının ölçülmüş parametreleri değildir. Kütüphanelerde `response`, `duration` ve `stiffness` aynı parametreler değildir.
+The source's physics model is `m·x'' + c·x' + k·x = 0`; the damping ratio is given as about 1 or 0.75–0.80, and the response value as 0.3–0.45 seconds. These are settings presented in the source, not measured parameters of all Apple animations. In libraries `response`, `duration`, and `stiffness` are not the same parameters.
 
-- Hover/focus gibi küçük durum değişimleri için kısa CSS geçişleri yeterlidir.
-- Doğrudan manipülasyonda devam eden harekete yeni kullanıcı girdisi cevap verebilmeli.
-- Yay gerekiyorsa projede zaten bulunan kütüphanenin belgelenmiş parametrelerini kullan; farklı API'lere sayı kopyalama.
-- Kaynaktaki rubber-banding ve momentum projeksiyonu ifadeleri bağlam, birim ve sınır koşulları verilmediğinden üretime hazır algoritmalar sayılmaz.
-- Scroll-jacking, zorunlu sekme ve giriş animasyonları ekleme. Tarayıcının yerel kaydırmasını sırf fizik taklidi için değiştirme.
-- `prefers-reduced-motion: reduce` CSS tokenlarını tüketen geçişlerde işe yarar; bağımsız JS hareketlerini otomatik olarak durdurmaz.
+- Short CSS transitions are enough for small state changes such as hover/focus.
+- During direct manipulation, ongoing motion must remain able to answer new user input.
+- When a spring is needed, use the documented parameters of the library already in the project; do not copy numbers across different APIs.
+- The source's rubber-banding and momentum-projection statements do not count as production-ready algorithms because context, units, and boundary conditions are missing.
+- Do not add scroll-jacking, forced tabs, or entrance animations. Do not replace the browser's native scrolling merely to imitate physics.
+- `prefers-reduced-motion: reduce` works for transitions consuming CSS tokens; it does not automatically stop independent JS motion.
 
-## Dokunsal geri bildirim ve cam
+## Haptic feedback and glass
 
-Core Haptics success/warning/error, impact ve selection sınıfları native platform bağlamıdır. Web sayfası bunların varlığını veya erişilebilir olduğunu varsayamaz. Anlaşılır görsel ve metinsel geri bildirim sağla; titreşim veya ses zorunlu değildir ve açık kapsam olmadan eklenmez.
+The Core Haptics success/warning/error, impact, and selection classes are a native-platform context. A web page cannot assume they exist or are accessible. Provide clear visual and textual feedback; vibration or sound is not required and is not added without explicit scope.
 
-Kaynağın visionOS ve Liquid Glass anlatıları bir web sayfasında saydam pencere zorunluluğu oluşturmaz. Camı içerik üzerinde okunurluk, kaydırma performansı ve fallback ile birlikte değerlendir. Sayfa tabanı çoğu durumda opak kalabilir.
+The source's visionOS and Liquid Glass narratives do not create a translucent-window requirement on a web page. Evaluate glass together with readability over content, scroll performance, and fallback. The page base can stay opaque in most cases.
