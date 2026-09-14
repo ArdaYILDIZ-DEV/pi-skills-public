@@ -33,3 +33,13 @@ A list is fine when the content is a real list. Otherwise prefer prose; do not t
 ## Final check
 
 Confirm post versus translation versus reply, speaker attribution, title need, actual question, and the choice to request or avoid advice. Remove invented rapport, background, and engagement bait.
+
+## Match the kind of contribution
+
+- **Brief answer or reaction:** one sentence may be enough. Use two to five sentences as a starting point for an ordinary reply, not a minimum or ceiling. Do not pad a complete answer or truncate a substantive one.
+- **Personal story:** enter through the supplied scene or event, preserve chronology and meaningful asides, and let the actual outcome determine the ending. No invented dialogue, punchline, moral, or sensory detail.
+- **Technical explanation:** give the answer or practical distinction early, then the mechanism, conditions, or examples the user supplied. Longer sentences and genuine lists are compatible with casual English; do not simplify away domain precision.
+- **Disagreement:** answer the specific claim and give the user's reason. A short concession can sharpen a real distinction, but do not manufacture agreement, disagreement, or a steelman to sound independent.
+- **DM:** use the relationship and shared context, not a public-post template. A greeting, thanks, or brief reassurance can be the point of the message rather than removable scaffolding.
+
+Historical Reddit examples show a range of registers, not a single persona. Learn their functional moves (direct reply, scene entry, local correction, compact explanation), not their era-specific memes, biography, insults, or spelling errors.
