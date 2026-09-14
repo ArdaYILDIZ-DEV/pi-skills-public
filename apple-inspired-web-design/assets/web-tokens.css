@@ -1,0 +1,173 @@
+/* Web adaptation of PRINCIPLES.md, not official Apple system values.
+   Tokens only: consumers must implement semantics, states and preference handling.
+   Explicit theme belongs on <html>; omit data-apple-theme for system preference. */
+:root {
+  --aw-font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --aw-text-small: 0.875rem;
+  --aw-text-body: 1rem;
+  --aw-text-heading: clamp(1.5rem, 1.2rem + 1vw, 2.25rem);
+  --aw-leading-body: 1.5;
+  --aw-leading-heading: 1.2;
+
+  --aw-space-1: 0.25rem;
+  --aw-space-2: 0.5rem;
+  --aw-space-3: 0.75rem;
+  --aw-space-4: 1rem;
+  --aw-space-5: 1.25rem;
+  --aw-space-6: 1.5rem;
+  --aw-space-8: 2rem;
+  --aw-space-12: 3rem;
+  --aw-page-gutter: clamp(1rem, 3vw, 2.5rem);
+  --aw-content-max: 72rem;
+  --aw-reading-max: 65ch;
+  --aw-target-touch: max(44px, 2.75rem);
+
+  --aw-radius-control: 0.5rem;
+  --aw-radius-panel: 1rem;
+  --aw-focus-width: 2px;
+  --aw-focus-offset: 3px;
+  --aw-motion-duration: 160ms;
+  --aw-motion-easing: cubic-bezier(0.2, 0, 0, 1);
+
+  --aw-surface-page: #ffffff;
+  --aw-surface-raised: #f2f2f7;
+  --aw-surface-inset: #e5e5ea;
+  --aw-text-primary: #000000;
+  --aw-text-secondary: #59595f;
+  --aw-text-disabled: #76767c;
+  --aw-border-subtle: #d1d1d6;
+  --aw-border-control: #76767c;
+  --aw-accent: #0066cc;
+  --aw-accent-hover: #0055aa;
+  --aw-accent-pressed: #004488;
+  --aw-on-accent: #ffffff;
+  --aw-link: #005fbe;
+  --aw-focus-ring: #0066cc;
+  --aw-status-error: #b42318;
+  --aw-status-success: #146c2e;
+  --aw-status-warning: #7a4b00;
+  --aw-shadow-panel: 0 4px 16px rgb(0 0 0 / 0.08);
+
+  /* Glass is opt-in; opacity is the unsupported-browser fallback. */
+  --aw-glass-translucent: rgb(255 255 255 / 0.92);
+  --aw-glass-bg: var(--aw-surface-raised);
+  --aw-glass-backdrop: none;
+  --aw-contrast-text: #000000;
+  --aw-contrast-on-accent: #ffffff;
+}
+
+/* :where keeps theme rules at :root specificity so preferences can override. */
+:root:where([data-apple-theme="dark"]) {
+  --aw-surface-page: #000000;
+  --aw-surface-raised: #1c1c1e;
+  --aw-surface-inset: #2c2c2e;
+  --aw-text-primary: #ffffff;
+  --aw-text-secondary: #b8b8c0;
+  --aw-text-disabled: #8e8e93;
+  --aw-border-subtle: #48484a;
+  --aw-border-control: #8e8e93;
+  --aw-accent: #75b8ff;
+  --aw-accent-hover: #9accff;
+  --aw-accent-pressed: #b8dcff;
+  --aw-on-accent: #000000;
+  --aw-link: #75b8ff;
+  --aw-focus-ring: #75b8ff;
+  --aw-status-error: #ff9a91;
+  --aw-status-success: #72db8a;
+  --aw-status-warning: #ffd166;
+  --aw-shadow-panel: 0 8px 24px rgb(0 0 0 / 0.3);
+  --aw-glass-translucent: rgb(28 28 30 / 0.94);
+  --aw-contrast-text: #ffffff;
+  --aw-contrast-on-accent: #000000;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-apple-theme])) {
+    --aw-surface-page: #000000;
+    --aw-surface-raised: #1c1c1e;
+    --aw-surface-inset: #2c2c2e;
+    --aw-text-primary: #ffffff;
+    --aw-text-secondary: #b8b8c0;
+    --aw-text-disabled: #8e8e93;
+    --aw-border-subtle: #48484a;
+    --aw-border-control: #8e8e93;
+    --aw-accent: #75b8ff;
+    --aw-accent-hover: #9accff;
+    --aw-accent-pressed: #b8dcff;
+    --aw-on-accent: #000000;
+    --aw-link: #75b8ff;
+    --aw-focus-ring: #75b8ff;
+    --aw-status-error: #ff9a91;
+    --aw-status-success: #72db8a;
+    --aw-status-warning: #ffd166;
+    --aw-shadow-panel: 0 8px 24px rgb(0 0 0 / 0.3);
+    --aw-glass-translucent: rgb(28 28 30 / 0.94);
+    --aw-contrast-text: #ffffff;
+    --aw-contrast-on-accent: #000000;
+  }
+}
+
+@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  :root {
+    --aw-glass-bg: var(--aw-glass-translucent);
+    --aw-glass-backdrop: blur(16px) saturate(120%);
+  }
+}
+
+/* Indirection keeps this preference compatible with both explicit themes. */
+@media (prefers-contrast: more) {
+  :root {
+    --aw-text-secondary: var(--aw-contrast-text);
+    --aw-border-subtle: var(--aw-contrast-text);
+    --aw-border-control: var(--aw-contrast-text);
+    --aw-link: var(--aw-contrast-text);
+    --aw-focus-ring: var(--aw-contrast-text);
+    --aw-accent: var(--aw-contrast-text);
+    --aw-accent-hover: var(--aw-contrast-text);
+    --aw-accent-pressed: var(--aw-contrast-text);
+    --aw-on-accent: var(--aw-contrast-on-accent);
+    --aw-status-error: var(--aw-contrast-text);
+    --aw-status-success: var(--aw-contrast-text);
+    --aw-status-warning: var(--aw-contrast-text);
+    --aw-shadow-panel: none;
+    --aw-glass-translucent: var(--aw-surface-raised);
+    --aw-glass-bg: var(--aw-surface-raised);
+    --aw-glass-backdrop: none;
+  }
+}
+
+/* Only consumers of this token are affected; handle JS motion separately. */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --aw-motion-duration: 0ms;
+  }
+}
+
+/* Let the browser/user choose colors; never set forced-color-adjust: none. */
+@media (forced-colors: active) {
+  :root {
+    --aw-surface-page: Canvas;
+    --aw-surface-raised: Canvas;
+    --aw-surface-inset: Canvas;
+    --aw-text-primary: CanvasText;
+    --aw-text-secondary: CanvasText;
+    --aw-text-disabled: GrayText;
+    --aw-border-subtle: CanvasText;
+    --aw-border-control: ButtonText;
+    --aw-accent: Highlight;
+    --aw-accent-hover: Highlight;
+    --aw-accent-pressed: Highlight;
+    --aw-on-accent: HighlightText;
+    --aw-link: LinkText;
+    --aw-focus-ring: Highlight;
+    --aw-status-error: CanvasText;
+    --aw-status-success: CanvasText;
+    --aw-status-warning: CanvasText;
+    --aw-shadow-panel: none;
+    --aw-glass-translucent: Canvas;
+    --aw-glass-bg: Canvas;
+    --aw-glass-backdrop: none;
+    --aw-contrast-text: CanvasText;
+    --aw-contrast-on-accent: Canvas;
+  }
+}
