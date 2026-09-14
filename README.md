@@ -1,6 +1,6 @@
 # Pi Skills
 
-A collection of 18 modular agent skills for [Pi Coding Agent](https://github.com/earendil-works/pi), packaged according to the `writing-great-skills` directory specification.
+A collection of 19 modular agent skills for [Pi Coding Agent](https://github.com/earendil-works/pi), packaged according to the `writing-great-skills` directory specification.
 
 Each skill provides a `SKILL.md` entry point with task-focused descriptions, operational boundaries, and bundled references or scripts.
 
@@ -55,6 +55,7 @@ Inspect all `SKILL.md` files in this repository. In each frontmatter `descriptio
 | [`comment-audit`](./comment-audit) | Prune obsolete comments and standardize docstrings across TS, JS, Python, Go, C, and shell with zero code logic mutation | "yorumları temizle", "docstring yaz", "comment audit" |
 | [`conventional-commit`](./conventional-commit) | Draft Conventional Commits 1.0.0 messages with imperative subjects and no AI-attribution trailers | "commit mesajı yaz", "commit changes" |
 | [`crafting-tasteful-interfaces`](./crafting-tasteful-interfaces) | Build accessible, production-grade frontend interfaces with deliberate color tokens and intentional typography | "tasarımı düzelt", "craft UI", "tasteful interface" |
+| [`how-to-use-subagents`](./how-to-use-subagents) | Spawn, steer, and coordinate interactive Pi subagents (scout, researcher, worker) in background tmux panes | "subagent kullan", "alt ajan başlat", "scout çalıştır", "worker görevlendir" |
 | [`no-ai-slop-frontend`](./no-ai-slop-frontend) | Identify and replace common AI template tells using a master catalog of ~100 anti-patterns across 9 UI categories | "ai slop engelle", "modern UI tasarla", "no ai slop" |
 | [`pi-extension-development`](./pi-extension-development) | Build, test, and package Pi Agent TypeScript extensions using ExtensionAPI tools, commands, and TUI widgets | "pi extension", "ExtensionAPI", "registerTool" |
 | [`professional-english-writer`](./professional-english-writer) | Produce concise, natural workplace English for pull requests, code reviews, technical summaries, and emails | Direct call: `/skill:professional-english-writer` |
@@ -75,6 +76,7 @@ Most skills are self-contained prompt and reference packs. A few rely on externa
 |---|---|---|---|
 | `browsing-reddit` | `rdt-cli` + `rdt-tidy` | Token-efficient Reddit scraping and tabular formatting | See [`browsing-reddit/README.md`](./browsing-reddit/README.md) |
 | `conventional-commit` | `git` | Repository status and diff inspection | System package manager |
+| `how-to-use-subagents` | `tmux` | Background subagent pane management | System package manager |
 | `tmux-orchestration` | `tmux` | Background session and socket multiplexing | System package manager |
 | `writing-great-skills` | `node` (v18+) | Running `scripts/validate.mjs` | Node.js runtime |
 
