@@ -1,0 +1,104 @@
+---
+name: natural-english-writer
+description: "Write or revise natural, informal English for Reddit posts and comments, tweets/social posts, emails, DMs, thread replies, and outreach. Use for requests such as 'make this sound natural', 'draft a casual reply', 'doğal İngilizce yaz', or 'bunu reddit için yaz', especially when matching the user's voice and removing corporate or AI-style phrasing. Not for formal reports or Turkish prose. Explicit invocation only: /skill:natural-english-writer."
+disable-model-invocation: true
+---
+
+# Natural English Writer
+
+Write in the user's voice, not generic "casual internet." Preserve meaning, opinions, facts, and requested constraints. Do not turn `might` into `will`, a request into a demand, or an estimate into a promise.
+
+## Workflow
+
+For out-of-scope requests, briefly state the boundary in the requested language, if specified; otherwise use the user's language. Do not add an unrequested translation or explanation in another language.
+
+1. Read the brief or source text, thread context, and voice samples. Identify platform, relationship, intent, emotional register, and length/format requirements.
+2. Ask one focused question when missing context would materially change the message, including unclear subreddit norms. For consequential messages without voice samples, ask for two examples. Otherwise use the defaults below and briefly state any material assumption.
+3. If an existing draft already fits the user's voice and audience, leave it unchanged or make only necessary edits. Otherwise draft using supplied details. Do not invent experiences, prices, dates, or product claims; ask if an essential fact is missing.
+4. Apply the style filters and final check. Return one ready-to-use draft without commentary; add a second variant only if tone remains genuinely ambiguous.
+
+## Calibrate voice and format
+
+Current samples take precedence. Match rhythm, capitalization, punctuation, contractions, slang density, and how the user jokes, disagrees, softens, or walks back a complaint.
+
+- Default to plain, contraction-heavy English: lowercase starts, short punches mixed with longer sentences, occasional walk-backs. Preserve natural looseness without manufacturing typos or stripping every apostrophe.
+- Keep standard capitalization for "I", proper nouns, and brand/product names even in an otherwise lowercase draft, unless the voice sample shows the user lowercasing these too.
+- Use `tbh`, `ngl`, `tho`, `fr`, `lowkey`, or `no cap` sparingly, never stacked. Omit slang when unsure; keep `lol`, `lmao`, and `hahaha` rare.
+- DMs tend to be short; a niche subreddit can be looser than outreach to a stranger. On Reddit, match local norms: r/programming favors precise jargon, r/CasualConversation relaxed conversation, r/offmychest earnestness.
+- Vary paragraph length, generally one to four sentences. No bullets or numbering in comments/DMs unless requested or the content is a list.
+- Software Q&A: answer first, then a concrete detail. Short jokes: one or two sentences, one twist. Longer stories: chronological, with relevant supplied details. Do not force every message to be short.
+- Respect platform character limits (e.g. X/Twitter's 280) when the request specifies or implies one; trim content rather than exceed it.
+
+### Voice samples
+
+Use these for calibration, not as claims to borrow for new drafts.
+
+**Keyboard review:** `tbh i bought this keyboard for the hype and now im stuck with it. switches are fine but the software is actual garbage, had to use some random github tool just to remap a key. wouldnt buy again`
+
+**DM:** `yo are you free this weekend? thinking of going to that new place, lmk if you're down. no stress if not`
+
+**X post:** `people really out here paying 100$ for a shirt with a tiny logo and calling it fashion lol. meanwhile my 10$ plain one does the same job`
+
+**Gaming:** `just spent 4 hours on this boss and died at 1% health twice. ngl im about to uninstall. game is good tho, i'll be back tomorrow`
+
+**Work:** `spent the whole day on a bug that was literally one missing semicolon. i hate it here. well not really, the job is fine lol`
+
+## Style filters
+
+No em dashes or emoji. Replace em dashes with periods, commas, or line breaks. Do not neutralize opinions unless asked or add copywriter sign-offs such as `Hope this helps!`.
+
+Mirror profanity only if it appears in the user's voice samples; never introduce it by default.
+
+Treat this vocabulary as a review list, not a ban: `delve`, `tapestry`, `testament`, `in the realm of`, `navigate`, `landscape`, `ever-evolving`, `robust`, `leverage`, `utilize`, `facilitate`, `showcase`, `comprehensive`, `holistic`, `seamless`, `elevate`, `unlock`, `unleash`, `game-changer`, `cutting-edge`, `paradigm`, `synergy`. Flag a use as filler only when it adds no useful meaning and does not fit the established voice samples. A word's absence from a sample is not itself a mismatch; preserve precise literal or technical uses.
+
+Avoid these rhetorical patterns unless the user's own samples establish them as part of their voice:
+
+- Canned transitions and framing: `moreover`, `furthermore`, `additionally`, `in conclusion`, `it's worth noting`, `let's dive into...`, `great question!`, `I'd be happy to...`, `In today's fast-paced world...`, `At the end of the day...`.
+- Formulaic contrasts: `not just X, but Y`, `it's not X, it's Y`, `not because X, but because Y`, `on one hand... on the other hand...`.
+- Staged question-and-answer emphasis: `and the [thing]? [answer].`; three-item rhetorical slogans such as `faster, smarter, better`; perfectly parallel phrasing; stacked intensifiers such as `really, truly, incredibly`.
+
+Start with the point, not a summary or corporate throat-clearing; stop without a concluding lesson. Cut padding, not genuine uncertainty or necessary context.
+
+## Before and after
+
+Style illustrations, not verified advice: the personal experiences and software claims require supporting facts in the request.
+
+**Gym advice**
+
+Bad: `It's not just about finding a good gym, it's about finding a sustainable routine. Whether you're a beginner or a seasoned athlete, consistency is key. Let's dive into...`
+
+Better: `tbh the gym you'll actually go back to > the "best" gym. i switched to one 5 min from my house and my attendance basically doubled overnight`
+
+**Marketplace DM**
+
+Bad: `Hi! I hope you're doing well. I noticed your listing and I'm very interested... Could you please let me know... Looking forward...`
+
+Better: `hey is this still up for grabs? can do cash today if so`
+
+**Software Q&A**
+
+Bad: `In today's fast-paced world of software development, leveraging robust paradigms is pivotal... Moreover, it's important to note...`
+
+Better: `tbh i'd just use criterion for this. does the 3s warmup so you don't have to guess the avg. worked for me when i was benching the same thing`
+
+**Faithful email rewrite**
+
+Input: `I was wondering whether you could send the revised invoice by Friday.`
+
+Output: `Could you send the revised invoice by Friday?`
+
+The request, revised invoice, and deadline stay intact; only the indirect opening is cut.
+
+**Counterexample:** Adding `yo`, lowercase starts, or typos to a polite email to a stranger can worsen it. Use the user's email voice, not the gaming sample.
+
+## Final check
+
+Compare the draft with the request and samples:
+
+- Meaning, stance, facts, length, and formatting preserved; no invented details.
+- Voice and directness fit the audience; rhythm varies naturally.
+- Style filters satisfied, with sample-backed exceptions only where allowed.
+- Every sentence contributes; advice remains useful without sales language or unnecessary brand mentions.
+- "I", proper nouns, and brand names keep standard capitalization unless samples say otherwise; platform character limits respected; profanity present only if sample-backed.
+
+Revise failing lines. These checks do not prove human authorship or guarantee an AI-detector result.
