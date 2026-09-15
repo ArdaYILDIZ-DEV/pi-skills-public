@@ -117,3 +117,73 @@ Notes: `İadeyi talep edebilirim ama onaylanacağını söyleyemem.`
 Output: `I can request a refund, but I can't guarantee it will be approved.`
 
 Ability is not a promise to act, and a request is not approval.
+
+## Remove ceremony without removing courtesy
+
+Input: `Thanks for sending the revised quote. I am writing to ask whether you could provide an explanation of the support fee. Could you also confirm whether shipping is included? Best, Deniz`
+
+Output: `Thanks for sending the revised quote. Could you explain the support fee? Could you also confirm whether shipping is included? Best, Deniz`
+
+`bluf/buried-lede` removes the announcement of the request, not the substantive thanks. `plain-language/bureaucratic-phrasing` simplifies the verb without turning the question into a demand.
+
+## A PR decision is not proof of implementation
+
+Input: `We made a decision to include the locale in the cache key in order to prevent an English result from being reused for a French request. Tests were added for en/fr. I haven't run them yet. The cache key is shared by the API and the worker.`
+
+Output: `We decided to include the locale in the cache key to prevent an English result from being reused for a French request. Tests were added for en/fr. I haven't run them yet. The cache key is shared by the API and the worker.`
+
+`plain-language/preferred-term` and `plain-language/bureaucratic-phrasing` shorten the phrasing, not the timeline. A decision is not necessarily completed implementation. `active-voice` does not authorize inventing who added the tests. Shared `API` terminology needs no expansion for this engineering audience.
+
+## Correction and degree can coexist
+
+Context: a colleague described the staging issue as widespread.
+
+Input: `Actually, very few clients are affected. We have only checked staging so far.`
+
+Output: unchanged.
+
+For `plain-language/redundant-qualifier`, `Actually` corrects the earlier claim and `very few` describes degree. `Only` and `so far` limit the evidence; none is disposable filler.
+
+## Put a prerequisite first without weakening it
+
+Input: `Terminate the worker only if it stops responding.`
+
+Output: `Only if the worker stops responding, terminate it.`
+
+This is an optional instructional reordering under `technical-writing/condition-before-action`; the original is also clear, as in the technical-precision example above. Retain `only if` and the exact operation. Do not replace it with a general recommendation to restart the worker, or claim the worker has already stopped responding.
+
+## Stable names require an established mapping
+
+Context: the author confirms that `runner` and `worker` both name the component officially called the worker.
+
+Input: `The runner accepts the job. The worker writes the result.`
+
+Output: `The worker accepts the job. The worker writes the result.`
+
+`terminology/inconsistent-naming` uses the supplied mapping, not a guessed synonym. Without that mapping, do not merge the terms. `The repository contains the history. The working tree contains my uncommitted edits` describes distinct concepts and should stay unchanged.
+
+## Resolve references, not behavior you have to invent
+
+Input: `The API calls the worker. It retries twice.`
+
+Clarification: `Which component retries twice: the API or the worker?`
+
+For `ambiguity/vague-reference`, the missing referent changes technical behavior. Ask rather than infer. By contrast, `The worker timed out. It retries twice` has a clear local antecedent and needs no mechanical noun repetition.
+
+## Match acronym explanations to the reader
+
+Context: the author says TTFB means time to first byte; the recipient is a nontechnical customer and the term appears only once.
+
+Input: `We measured TTFB, but we haven't compared the results yet.`
+
+Output: `We measured the time until the first byte of the response arrived, but we haven't compared the results yet.`
+
+`plain-language/unexplained-acronym` supplies usable meaning without adding a glossary entry or implying an improvement. For engineers who share the term, the original can stay unchanged. If the expansion is unknown, ask rather than guess.
+
+## Split independent jobs without inventing their relationship
+
+Input: `The migration is ready and the dashboard has a layout bug and we need a reviewer.`
+
+Output: `The migration is ready. The dashboard has a layout bug. We need a reviewer.`
+
+`structure/overloaded-sentence` separates unrelated status items. It does not establish whether the reviewer is needed for the migration or dashboard, nor whether either causes or blocks the other. Ask about that association if the requested handoff needs it.

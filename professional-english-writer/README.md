@@ -43,6 +43,8 @@ Or to polish an email or announcement:
 - **Zero ceremonial bloat:** Cuts canned greetings, repetitive summaries, and excessive hedging while keeping genuine courtesy and trade-offs.
 - **Fact preservation:** Never fabricates metrics, consensus, authority, or root causes. Preserves all identifiers, commit hashes, code blocks, and versions.
 
+See [named clarity checks](SKILL.md#named-clarity-checks) for ten audience-sensitive writing principles with workplace examples and exceptions, including conditions before actions, consistent naming, and clear local references. These are editorial checks, not blanket word bans or automatic rewrites.
+
 ## Directory structure
 
 ```text
