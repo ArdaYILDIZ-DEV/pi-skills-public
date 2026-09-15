@@ -26,7 +26,7 @@ node writing-great-skills/scripts/validate.mjs */
 Expected result:
 ```text
 PASS apple-inspired-web-design (automatic)
-PASS avoid-ai-design (automatic)
+PASS no-ai-slop-design (automatic)
 PASS browsing-reddit (automatic)
 ...
 PASS writing-great-system-prompts (automatic)
@@ -49,14 +49,13 @@ Inspect all `SKILL.md` files in this repository. In each frontmatter `descriptio
 | Skill | Primary responsibility | Key triggers |
 |---|---|---|
 | [`apple-inspired-web-design`](./apple-inspired-web-design) | Design, review, or audit Apple HIG-inspired web surfaces using clean typography, semantic colors, and subtle elevation | "Apple tarzı web", "HIG web design", "Apple-inspired page" |
-| [`avoid-ai-design`](./avoid-ai-design) | Audit and rewrite frontend UI to remove generic AI design patterns (AI slop) in HTML/CSS and React/Tailwind | "de-slop UI", "ai sloptan temizle", "tasarımı iyileştir" |
 | [`browsing-reddit`](./browsing-reddit) | Read and search Reddit discussions with ~20–65x token savings using compact tables and flattened comment trees via `rdt-tidy` | "reddit'e bak", "search reddit", "read thread" |
 | [`casual-internet-english-writer`](./casual-internet-english-writer) | Draft and revise native informal English for Reddit posts, forum replies, and community messages | Direct call: `/skill:casual-internet-english-writer` |
 | [`comment-audit`](./comment-audit) | Prune obsolete comments and standardize docstrings across TS, JS, Python, Go, C, and shell with zero code logic mutation | "yorumları temizle", "docstring yaz", "comment audit" |
 | [`conventional-commit`](./conventional-commit) | Draft Conventional Commits 1.0.0 messages with imperative subjects and no AI-attribution trailers | "commit mesajı yaz", "commit changes" |
 | [`crafting-tasteful-interfaces`](./crafting-tasteful-interfaces) | Build accessible, production-grade frontend interfaces with deliberate color tokens and intentional typography | "tasarımı düzelt", "craft UI", "tasteful interface" |
 | [`how-to-use-subagents`](./how-to-use-subagents) | Spawn, steer, and coordinate interactive Pi subagents (scout, researcher, worker) in background tmux panes | "subagent kullan", "alt ajan başlat", "scout çalıştır", "worker görevlendir" |
-| [`no-ai-slop-frontend`](./no-ai-slop-frontend) | Identify and replace common AI template tells using a master catalog of ~100 anti-patterns across 9 UI categories | "ai slop engelle", "modern UI tasarla", "no ai slop" |
+| [`no-ai-slop-design`](./no-ai-slop-design) | Build, audit, and rewrite frontend UI to remove generic AI design patterns using a 9-category tells catalog and 13 aesthetic directions | "tasarımı düzelt", "de-slop UI", "no ai slop" |
 | [`pi-extension-development`](./pi-extension-development) | Build, test, and package Pi Agent TypeScript extensions using ExtensionAPI tools, commands, and TUI widgets | "pi extension", "ExtensionAPI", "registerTool" |
 | [`professional-english-writer`](./professional-english-writer) | Produce concise, natural workplace English for pull requests, code reviews, technical summaries, and emails | Direct call: `/skill:professional-english-writer` |
 | [`research`](./research) | Multi-source, disk-backed research workflow using staged Markdown artifacts (`QUESTION.md`, `SOURCES.md`, `REPORT.md`) | "derin araştırma", "investigate", "research topic" |
