@@ -67,7 +67,7 @@ def load_catalog():
             raise ValueError(f"unknown method: {rule['method']}")
         if rule["method"] == "automated":
             detector = rule.get("detector")
-            if detector not in {"regex", "case_sensitive_regex", "nested_parentheses", "transition_cluster", "repeated_openings"}:
+            if detector not in {"regex", "case_sensitive_regex", "nested_parentheses", "transition_cluster", "repeated_openings", "qualifier_cluster"}:
                 raise ValueError(f"unknown detector: {detector}")
             if detector in {"regex", "case_sensitive_regex"}:
                 if not isinstance(rule.get("pattern"), str):
@@ -162,6 +162,21 @@ def detect(rule, prose):
                 end -= 1
             if end > start:
                 yield start, end, "Matched documented lexical or structural cue."
+    elif detector == "qualifier_cluster":
+        # A single degree word can do a different job from a correction or hedge.
+        for match in re.finditer(r"\bvery(?:[ \t,]+very\b)+", prose, FLAGS):
+            yield match.start(), match.end(), "Repeated degree cue; review whether the emphasis is intentional."
+        pattern = r"\b(?:basically|actually|kind of|sort of)\b"
+        matches = list(re.finditer(pattern, prose, FLAGS))
+        cluster = []
+        for match in matches:
+            if cluster and not re.fullmatch(r"[ \t,]+", prose[cluster[-1].end():match.start()]):
+                if len(cluster) >= 2:
+                    yield cluster[0].start(), cluster[-1].end(), "Adjacent qualifier cues; review their separate conversational functions."
+                cluster = []
+            cluster.append(match)
+        if len(cluster) >= 2:
+            yield cluster[0].start(), cluster[-1].end(), "Adjacent qualifier cues; review their separate conversational functions."
     elif detector == "nested_parentheses":
         stack = []
         nested = False

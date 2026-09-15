@@ -51,21 +51,25 @@
       "method": "automated",
       "detector": "regex",
       "covers": [
-        "Inflated diction and abstract framing"
+        "Inflated diction and abstract framing",
+        "plain-language/preferred-term"
       ],
       "sources": [
-        "references/casual-register.md#Conditional repairs"
+        "references/casual-register.md#Conditional repairs",
+        "SKILL.md#Named clarity checks"
       ],
       "reason": "This phrase may inflate an ordinary action or obscure its actor.",
       "action": "Try a plain verb or direct subject without changing the technical meaning.",
       "exceptions": "Keep literal meanings, precise domain language, and deliberate imagery.",
       "positive": [
-        "We should utilize this."
+        "We should utilize this.",
+        "I used it in order to save time.",
+        "It failed due to the fact that the disk was full."
       ],
       "negative": [
         "CPU utilization is high."
       ],
-      "pattern": "\\b(?:delve into|navigate the complexities(?: of)?|rich tapestry|utilize|facilitate|commence|stands as|in the context of|with regard to|in terms of|users are advised to)\\b"
+      "pattern": "\\b(?:delve into|navigate the complexities(?: of)?|rich tapestry|utilize|facilitate|commence|stands as|in the context of|with regard to|in terms of|users are advised to|in order to|due to the fact that)\\b"
     },
     {
       "id": "REG004",
@@ -567,6 +571,151 @@
         "source"
       ],
       "language": "tr"
+    },
+    {
+      "id": "PLAIN002",
+      "name": "Bureaucratic action phrases",
+      "method": "automated",
+      "detector": "regex",
+      "covers": [
+        "plain-language/bureaucratic-phrasing"
+      ],
+      "sources": [
+        "SKILL.md#Named clarity checks"
+      ],
+      "reason": "A noun phrase may make an ordinary action sound bureaucratic.",
+      "action": "Try decide, explain, or analyze with the same actor, tense, and request force.",
+      "exceptions": "Keep nouns naming real artifacts, deliberate emphasis, quotations, and exact terms. Common decision tree, table, and record noun compounds are excluded from this cue; other artifact names still need review.",
+      "pattern": "\\b(?:mak(?:e|es|ing)|made) a decision\\b(?![ \\t]+(?:trees?|tables?|records?)\\b)|\\bprovid(?:e|es|ed|ing) an explanation\\b|\\bperform(?:s|ed|ing)? an analysis\\b",
+      "positive": [
+        "I made a decision to return it.",
+        "Can you provide an explanation?",
+        "We performed an analysis of the logs."
+      ],
+      "negative": [
+        "I decided to return it.",
+        "The analysis is attached.",
+        "I made a decision tree for choosing a phone.",
+        "We are making a decision table for the parser.",
+        "Can you make a decision record for this change?"
+      ]
+    },
+    {
+      "id": "PLAIN003",
+      "name": "Adjacent qualifier cues",
+      "method": "automated",
+      "detector": "qualifier_cluster",
+      "covers": [
+        "plain-language/redundant-qualifier"
+      ],
+      "sources": [
+        "SKILL.md#Named clarity checks"
+      ],
+      "reason": "Adjacent discourse fillers or repeated very may duplicate framing or emphasis; the match cannot establish redundancy.",
+      "action": "Identify each qualifier’s job and remove only repetition that does not change voice or meaning.",
+      "exceptions": "Keep correction, uncertainty, degree, politeness, and deliberate emphasis. Single qualifiers are not violations.",
+      "positive": [
+        "Basically, actually, it works.",
+        "It is very, very slow."
+      ],
+      "negative": [
+        "Actually, the free one works.",
+        "I'm kind of worried.",
+        "What sort of cable is this?",
+        "It's actually very useful.",
+        "Actually, very few phones support it.",
+        "I'm kind of very worried about the photos."
+      ]
+    },
+    {
+      "id": "CLARITY001",
+      "name": "Agency without a passive-voice ban",
+      "method": "contextual_review",
+      "covers": [
+        "active-voice"
+      ],
+      "sources": [
+        "SKILL.md#Named clarity checks"
+      ],
+      "reason": "Grammar alone cannot show whether the reader needs an actor.",
+      "action": "Check whether passive wording obscures a known speaker or action. Use the supplied actor only when clearer.",
+      "exceptions": "Keep natural passives such as My bike was stolen; an unknown or irrelevant actor need not be named.",
+      "requires": []
+    },
+    {
+      "id": "CLARITY002",
+      "name": "Qualifier function beyond clusters",
+      "method": "contextual_review",
+      "covers": [
+        "plain-language/redundant-qualifier"
+      ],
+      "sources": [
+        "SKILL.md#Named clarity checks"
+      ],
+      "reason": "An adjacent-cue scan misses separated repetition and cannot interpret discourse function.",
+      "action": "Read basically, actually, very, kind of, and sort of in context. Trim only duplicated or empty work.",
+      "exceptions": "Keep corrections, degree, genuine uncertainty, politeness, mixed feelings, and supported voice.",
+      "requires": []
+    },
+    {
+      "id": "CLARITY003",
+      "name": "Find the contribution without flattening stories",
+      "method": "contextual_review",
+      "covers": [
+        "bluf/buried-lede"
+      ],
+      "sources": [
+        "SKILL.md#Named clarity checks"
+      ],
+      "reason": "Opening phrases do not establish where the useful contribution belongs.",
+      "action": "In a question or help reply, check whether empty setup delays the question or answer; review the thread when needed.",
+      "exceptions": "Keep necessary context, chronological stories, humor, and sensitive DM openings; do not add a summary.",
+      "requires": []
+    },
+    {
+      "id": "CLARITY004",
+      "name": "Separate unrelated sentence jobs",
+      "method": "contextual_review",
+      "covers": [
+        "structure/overloaded-sentence"
+      ],
+      "sources": [
+        "SKILL.md#Named clarity checks"
+      ],
+      "reason": "Word counts and conjunction counts do not establish whether ideas are unrelated.",
+      "action": "Read each sentence for independent topics. Split at a real change of thought without dropping qualifications or inventing links.",
+      "exceptions": "Keep coherent long explanations, natural conversational rhythm, compact asides, and connected reasoning.",
+      "requires": []
+    },
+    {
+      "id": "CLARITY005",
+      "name": "Recoverable local references",
+      "method": "contextual_review",
+      "covers": [
+        "ambiguity/vague-reference"
+      ],
+      "sources": [
+        "SKILL.md#Named clarity checks"
+      ],
+      "reason": "A pronoun match cannot establish its antecedent or the context supplied by a parent message.",
+      "action": "Resolve this, it, and similar references from nearby prose and the replied-to message. Name only a supplied referent; ask if a consequential ambiguity remains.",
+      "exceptions": "Keep Thanks, that worked and other clear references, including references to a whole preceding point.",
+      "requires": []
+    },
+    {
+      "id": "CLARITY006",
+      "name": "Audience-sensitive acronyms and jargon",
+      "method": "contextual_review",
+      "covers": [
+        "plain-language/unexplained-acronym"
+      ],
+      "sources": [
+        "SKILL.md#Named clarity checks"
+      ],
+      "reason": "Capitalization cannot determine what the intended audience knows or what an acronym means.",
+      "action": "Check unfamiliar abbreviations and jargon against the audience. Explain or use plain wording only with an established meaning; request missing context if material.",
+      "exceptions": "Keep shared specialist vocabulary and everyday shorthand; no compulsory glossary or guessed expansion.",
+      "requires": []
     }
   ],
   "excluded_rules": [

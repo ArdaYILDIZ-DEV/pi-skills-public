@@ -87,6 +87,89 @@ class AuditTests(unittest.TestCase):
                     for case in rule["negative"]:
                         self.assertNotIn(rule["id"], self.ids(self.report(case, "--artifact", "reply")))
 
+    def test_named_clarity_checks(self):
+        report = self.report("Thanks, that worked.")
+        checks = report["files"][0]["checks"]
+        expected = {
+            "plain-language/preferred-term", "active-voice",
+            "plain-language/redundant-qualifier", "plain-language/bureaucratic-phrasing",
+            "bluf/buried-lede", "structure/overloaded-sentence",
+            "ambiguity/vague-reference", "plain-language/unexplained-acronym",
+        }
+        covered = {name for check in checks for name in check["covers"]}
+        self.assertTrue(expected <= covered, expected - covered)
+        for name in expected - {"plain-language/preferred-term", "plain-language/bureaucratic-phrasing"}:
+            self.assertTrue(any(name in c["covers"] and c["method"] == "contextual_review"
+                                and c["status"] == "requires_review" for c in checks), name)
+
+    def test_plain_words_and_bureaucratic_verbs(self):
+        for text, rule in [
+            ("I used it in order to save time.", "REG003"),
+            ("It failed due to the fact that the disk was full.", "REG003"),
+            ("I made a decision to return it.", "PLAIN002"),
+            ("Can you provide an explanation?", "PLAIN002"),
+            ("We performed an analysis of the logs.", "PLAIN002"),
+        ]:
+            with self.subTest(text=text):
+                self.assertIn(rule, self.ids(self.report(text)))
+
+    def test_qualifier_cluster_is_local_and_protected(self):
+        self.assertIn("PLAIN003", self.ids(self.report("Basically, actually, it works.")))
+        for text in [
+            "Actually, the free one works. That's kind of surprising.",
+            "It is very slow.",
+            "What kind of cable is this?",
+            "Basically, it works. Actually, the paid one doesn't.",
+            "Basically, I tried it.\n\nActually, it failed.",
+            "Basically, `actually` it works.",
+            '> Basically, actually, it works.\n\n"Basically, actually, it works."',
+        ]:
+            with self.subTest(text=text):
+                self.assertNotIn("PLAIN003", self.ids(self.report(text, name="draft.md")))
+
+    def test_correction_and_degree_are_not_duplicate_qualifiers(self):
+        for text in [
+            "It's actually very useful.",
+            "Actually, very few phones support it.",
+            "I'm kind of very worried about the photos.",
+        ]:
+            with self.subTest(text=text):
+                self.assertNotIn("PLAIN003", self.ids(self.report(text)))
+        for text in ["It's very, very slow.", "Basically, actually, it works."]:
+            with self.subTest(text=text):
+                self.assertIn("PLAIN003", self.ids(self.report(text)))
+
+    def test_decision_artifacts_are_not_deciding(self):
+        for text in [
+            "I made a decision tree for choosing a phone.",
+            "We are making a decision table for the parser.",
+            "Can you make a decision record for this change?",
+        ]:
+            with self.subTest(text=text):
+                self.assertNotIn("PLAIN002", self.ids(self.report(text)))
+        self.assertIn("PLAIN002", self.ids(self.report("I made a decision about the tree.")))
+
+    def test_natural_clarity_exceptions_still_need_review(self):
+        for text in [
+            "My bike was stolen last month.",
+            "Actually, the free version works. I'm kind of worried they'll remove it.",
+            "The API returns JSON. The CPU is idle.",
+            "I restarted the app, but it still crashes when I open the same file, so I can't tell whether the file or the app is the problem.",
+        ]:
+            with self.subTest(text=text):
+                report = self.report(text)
+                self.assertEqual(self.ids(report), set())
+                checks = [c for c in report["files"][0]["checks"] if c["rule_id"].startswith("CLARITY")]
+                self.assertEqual(len(checks), 6)
+                self.assertTrue(all(c["status"] == "requires_review" for c in checks))
+                self.assertFalse(report["files"][0]["editorial_review_complete"])
+
+    def test_new_lexical_checks_preserve_protected_spans(self):
+        text = ('`in order to` and "make a decision"\n\n'
+                '> provide an explanation\n\n'
+                '```txt\ndue to the fact that\nBasically, actually\n```\n')
+        self.assertEqual(self.ids(self.report(text, name="draft.md")), set())
+
     def test_markdown_protection_and_positions(self):
         text = ('# Draft\r\n\r\n> Moreover, utilize this.\r\n\r\n'
                 '```txt\r\nFurthermore, game-changer.\r\n```\r\n'

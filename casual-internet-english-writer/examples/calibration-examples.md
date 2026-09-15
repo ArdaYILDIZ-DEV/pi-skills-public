@@ -123,3 +123,65 @@ Input: `Thanks, that worked.`
 Output: unchanged.
 
 Do not add a tool, date, explanation, or extra sentences to meet a specificity or length target.
+
+## Correct someone without deleting uncertainty
+
+Context: another commenter says the free version cannot export files.
+
+Input: `Actually, the free version does let you export. I utilized it yesterday in order to save a copy. I'm kind of worried they'll remove it, though.`
+
+Output: `Actually, the free version does let you export. I used it yesterday to save a copy. I'm kind of worried they'll remove it, though.`
+
+`plain-language/preferred-term` simplifies the action; `plain-language/redundant-qualifier` preserves the correction and degree of worry. `Actually` and `kind of` do different jobs. Do not turn a concern into a prediction that export will be removed.
+
+## Keep passive voice and the story's order
+
+Input: `My bike was stolen last month, so I started taking the bus. Yesterday I missed it and walked instead. On the way I found the secondhand bookshop I'd been looking for. I was late, but honestly, I wasn't that upset.`
+
+Output: unchanged.
+
+For `active-voice`, the thief is unknown and irrelevant. For `bluf/buried-lede`, this is a story, not a delayed help answer. Do not invent an actor, lead with the bookshop, or replace the ending with a lesson.
+
+## A clear DM reference needs no expansion
+
+Context: a friend suggested restarting the app.
+
+Input: `Thanks, that worked. Basically, I made a decision to leave the settings alone for now. I'm still kind of nervous about losing the photos.`
+
+Output: `Thanks, that worked. I decided to leave the settings alone for now. I'm still kind of nervous about losing the photos.`
+
+`ambiguity/vague-reference` accepts the clear reply context. `plain-language/bureaucratic-phrasing` restores the ordinary verb. The empty `Basically` can go, but `for now` and the degree of nervousness stay.
+
+## Long reasoning is not unrelated sentence overload
+
+Input: `I restarted the app, but it still crashes when I open the same file, so I can't tell whether the file or the app is the problem.`
+
+Output: unchanged.
+
+`structure/overloaded-sentence` concerns unrelated jobs, not a word limit. The attempted fix, remaining symptom, condition, and uncertainty form one coherent explanation. Do not diagnose either the file or the app.
+
+## Shared jargon is not a glossary request
+
+Context: a technical forum thread about an API response.
+
+Input: `The API returns JSON. The CPU is idle.`
+
+Output: unchanged.
+
+For `plain-language/unexplained-acronym`, these terms fit the supplied specialist audience. A general-audience rewrite may need explanation, but the acronym's presence alone does not require one.
+
+## An ambiguous reference can need a question
+
+Input: `I tried the app and the browser version. It crashed.`
+
+Clarification: `Which one crashed: the app or the browser version?`
+
+For `ambiguity/vague-reference`, neither candidate is established as the referent. If the source supplies no answer and the distinction matters, ask rather than silently choosing one. This differs from the clear DM reference above.
+
+## A decision tree is an object, not a wordy verb
+
+Input: `I made a decision tree for choosing a phone.`
+
+Output: unchanged.
+
+For `plain-language/bureaucratic-phrasing`, the speaker made an actual artifact. Replacing `made a decision` with `decided` would destroy the meaning. Similarly, `It's actually very useful` can combine correction and degree without redundant qualification.

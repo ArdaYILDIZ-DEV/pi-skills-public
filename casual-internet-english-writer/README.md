@@ -113,10 +113,12 @@ Use `python3 -B scripts/audit.py --help` for the CLI synopsis.
 
 The [rule catalog](scripts/audit_rules.json) maps active documentation requirements to stable IDs, source file/heading references, exceptions, and suggested actions:
 
-- **Automated cues:** opening scaffolding, formal transitions, inflated diction, vague praise, staged contrasts, significance tails, theatrical questions, repeated uncertainty, summary framing, nested parentheses, transition clusters, staged fragments, repeated openings, internet-costume markers, reply framing, engagement endings, and update markers.
-- **Contextual review:** genuine agreement, noun piles, redundant triplets, repeated paragraph jobs, non-nested aside overload, punctuation function, technical register, user voice, platform structure, actual questions, and advice boundaries.
+- **Automated cues:** opening scaffolding, formal transitions, inflated diction and wordy alternatives, bureaucratic action phrases, adjacent qualifier clusters, vague praise, staged contrasts, significance tails, theatrical questions, repeated uncertainty, summary framing, nested parentheses, transition clusters, staged fragments, repeated openings, internet-costume markers, reply framing, engagement endings, and update markers.
+- **Contextual review:** genuine agreement, noun piles, redundant triplets, repeated paragraph jobs, non-nested aside overload, punctuation function, technical register, user voice, platform structure, actual questions, and advice boundaries. The named clarity checks also cover passive voice and agency, each qualifier's function, a buried contribution, unrelated ideas within a sentence, unclear local references, and audience-sensitive acronyms or jargon.
 - **Source comparison:** facts, speaker attribution, chronology, negation, conditions, uncertainty, intensity, exact terms, protected content, instruction separation, invented details, and Turkish meaning/register preservation.
 - **Excluded legacy rules:** fixed rhythm formulas, mandatory contractions or fragments, punctuation/transition quotas, universal word bans, forced one-sidedness, invented updates, and authorship scoring. Active conditional guidance overrides these archived prescriptions.
+
+See [named clarity checks](SKILL.md#named-clarity-checks) for the eight principles, local repair examples, and exceptions. All eight have a review route in the catalog; semantic judgments remain contextual even when the automated scan finds no candidates.
 
 Coverage means every documented writing requirement has a review route, not that every flaw has an automatic detector. Rules remain contextual: `utilize`, `lol`, `Edit:`, a contrast, or a technical adjective may be completely appropriate. Structural thresholds are candidate triggers, not editing quotas. Unlisted wording, semantic problems, or established voice can change the judgment.
 
