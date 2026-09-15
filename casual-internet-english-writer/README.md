@@ -153,7 +153,7 @@ Strict mode does not fail on pending manual checks or parser warnings. Always in
 
 - The helper reads local files and writes a report to stdout. It makes no network/model calls, executes no input instructions, creates no report files, and never rewrites inputs. Tests create disposable fixtures under the system temp directory.
 - Reports contain input paths and draft excerpts: treat them as potentially sensitive. Shell redirection or downstream tools control any report persistence or disclosure; avoid redirecting onto an input file because the shell would truncate it before the CLI starts.
-- Markdown handling is deliberately conservative, not full CommonMark: recognized fenced/indented code, blockquote paragraphs, inline code, brackets/links, HTML tags, URLs, and paired quotations are excluded. Link labels are excluded too. Plain text receives quotation and URL masking only.
+- Masking is deliberately conservative, not full CommonMark: recognized fences, inline code, brackets/links (labels included), URLs, and paired quotations are excluded in every draft, plus indented code, lazy blockquote continuation, and HTML tags in Markdown drafts. A plain-text quote needs its own `>` marker on each line; a bare continuation line still scans.
 - Complex nesting, escaping, HTML bodies, and unmarked technical labels need manual review. Unclosed fences exclude the remaining text and produce a warning. A fully protected file reports no editable-prose coverage, not a clean result. Missing or overbroad protection can cause false positives or missed cues.
 - Sentence splitting and all structural patterns are heuristics. No precision/recall benchmark, human-authorship claim, or model-quality improvement is established by unit tests.
 

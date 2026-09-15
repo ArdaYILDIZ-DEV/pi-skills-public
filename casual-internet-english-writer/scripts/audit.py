@@ -14,12 +14,12 @@ import sys
 CATALOG = Path(__file__).resolve().with_name("audit_rules.json")
 MAX_BYTES = 1024 * 1024
 FLAGS = re.IGNORECASE | re.MULTILINE
-TRANSITIONS = re.compile(r"\b(?:moreover|furthermore|additionally|notably|importantly)\b", FLAGS)
+TRANSITIONS = re.compile(r"\b(?:moreover|furthermore|additionally|notably|importantly|that being said|having said that|first and foremost|all things considered)\b", FLAGS)
 LIMITS = [
     "Matches are review candidates, not confirmed flaws or authorship evidence.",
     "Semantic fidelity, conversational function, voice, and technical precision require agent review.",
-    "Markdown masking is conservative, not a full CommonMark parser: recognized fences, indented code, "
-    "blockquote paragraphs, inline code, brackets/links, HTML tags, URLs, and paired quotations are excluded. "
+    "Masking is conservative, not a full CommonMark parser: recognized fences, inline code, brackets/links, URLs, and paired quotations are excluded in every draft, plus indented code, lazy blockquote continuation, and HTML tags in Markdown drafts. "
+    "A plain-text quote needs its own marker on each line; a bare continuation line still scans. "
     "Complex nesting, escaped delimiters, HTML bodies, and unmarked labels may need manual protection.",
     "Sentence boundaries and structural triggers are heuristics, not writing quotas.",
     "Turkish checks run only with --source-language tr; language and artifact are not inferred.",
@@ -67,7 +67,7 @@ def load_catalog():
             raise ValueError(f"unknown method: {rule['method']}")
         if rule["method"] == "automated":
             detector = rule.get("detector")
-            if detector not in {"regex", "case_sensitive_regex", "nested_parentheses", "transition_cluster", "repeated_openings", "qualifier_cluster"}:
+            if detector not in {"regex", "case_sensitive_regex", "nested_parentheses", "transition_cluster", "repeated_openings", "qualifier_cluster", "exclamation_density"}:
                 raise ValueError(f"unknown detector: {detector}")
             if detector in {"regex", "case_sensitive_regex"}:
                 if not isinstance(rule.get("pattern"), str):
@@ -99,40 +99,42 @@ def editable_prose(text, markdown):
 
     if text.startswith("\ufeff"):
         mask(0, 1, "byte_order_mark")
-    if markdown:
-        fence = None
-        quote = False
-        offset = 0
-        for line in text.splitlines(keepends=True):
-            end = offset + len(line)
-            if fence:
-                mask(offset, end, "fenced_code")
-                if re.fullmatch(r" {0,3}" + re.escape(fence[0]) + "{" + str(fence[1]) + r",}[ \t]*[\r\n]*", line):
-                    fence = None
-            else:
-                opener = re.match(r" {0,3}(`{3,}|~{3,})", line)
-                if opener:
-                    fence = (opener[1][0], len(opener[1]))
-                    mask(offset, end, "fenced_code")
-                    quote = False
-                elif re.match(r" {0,3}>", line) or (quote and line.strip()):
-                    quote = True
-                    mask(offset, end, "blockquote")
-                else:
-                    quote = False
-                    if line.startswith(("    ", "\t")):
-                        mask(offset, end, "indented_code")
-            offset = end
+    fence = None
+    quote = False
+    offset = 0
+    for line in text.splitlines(keepends=True):
+        end = offset + len(line)
         if fence:
-            warnings.append("Unclosed code fence: remaining text was excluded from style matching.")
-        patterns = [
-            (r"(?<!`)(`+)(?!`)[\s\S]*?(?<!`)\1(?!`)", "inline_code"),
-            (r"!?\[[^\]\r\n]*\](?:\([^\r\n]*?\)|\[[^\]\r\n]*\])?", "bracket_or_link"),
-            (r"<[^>\r\n]+>", "html_tag_or_autolink"),
-        ]
-        for pattern, kind in patterns:
-            for match in re.finditer(pattern, "".join(chars)):
-                mask(match.start(), match.end(), kind)
+            mask(offset, end, "fenced_code")
+            if re.fullmatch(r" {0,3}" + re.escape(fence[0]) + "{" + str(fence[1]) + r",}[ \t]*[\r\n]*", line):
+                fence = None
+        else:
+            opener = re.match(r" {0,3}(`{3,}|~{3,})", line)
+            if opener:
+                fence = (opener[1][0], len(opener[1]))
+                mask(offset, end, "fenced_code")
+                quote = False
+            elif re.match(r" {0,3}>", line) or (markdown and quote and line.strip()):
+                # Plain-text replies rarely sustain lazy blockquote continuation:
+                # an unprefixed line after a ">" quote is usually the author's own reply.
+                quote = True
+                mask(offset, end, "blockquote")
+            else:
+                quote = False
+                if markdown and line.startswith(("    ", "\t")):
+                    mask(offset, end, "indented_code")
+        offset = end
+    if fence:
+        warnings.append("Unclosed code fence: remaining text was excluded from style matching.")
+    patterns = [
+        (r"(?<!`)(`+)(?!`)[\s\S]*?(?<!`)\1(?!`)", "inline_code"),
+        (r"!?\[[^\]\r\n]*\](?:\([^\r\n]*?\)|\[[^\]\r\n]*\])?", "bracket_or_link"),
+    ]
+    if markdown:
+        patterns.append((r"<[^>\r\n]+>", "html_tag_or_autolink"))
+    for pattern, kind in patterns:
+        for match in re.finditer(pattern, "".join(chars)):
+            mask(match.start(), match.end(), kind)
     for pattern, kind in [
         (r'https?://[^\s<>]+', "url"),
         (r'"[^"\r\n]+"|“[^”]+”|(?<!\w)\x27[^\x27\r\n]+\x27(?!\w)|(?<!\w)‘[^’\r\n]+’(?!\w)', "quotation"),
@@ -209,6 +211,14 @@ def detect(rule, prose):
                 if len(matches) >= 3:
                     for start, end in matches:
                         yield start, end, f"The same first two words start {len(matches)} sentence units in this paragraph."
+    elif detector == "exclamation_density":
+        for offset, paragraph in paragraphs(prose):
+            excited = []
+            for sentence in re.finditer(r"[^.!?…]+(?:[.!?…]+|$)", paragraph):
+                if sentence[0].rstrip().endswith("!"):
+                    excited.append((offset + sentence.start(), offset + sentence.end()))
+            if len(excited) >= 3:
+                yield excited[0][0], excited[-1][1], f"{len(excited)} sentences end with an exclamation mark in one paragraph."
 
 
 def make_span(text, line_starts, start, end):

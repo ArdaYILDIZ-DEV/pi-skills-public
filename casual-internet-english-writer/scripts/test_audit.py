@@ -113,6 +113,120 @@ class AuditTests(unittest.TestCase):
             with self.subTest(text=text):
                 self.assertIn(rule, self.ids(self.report(text)))
 
+    def test_extended_openers_and_signposting(self):
+        for text, rule in [
+            ("I just wanted to share my experience.", "REG001"),
+            ("Thank you for sharing this!", "REG001"),
+            ("What a great topic!", "REG001"),
+            ("This is a great question and I appreciate you bringing it up!", "REG001"),
+            ("That being said, I still recommend it.", "REG002"),
+            ("It's worth noting that the free version works.", "REG002"),
+            ("First and foremost, the interface is intuitive.", "REG002"),
+            ("All things considered, it's a solid choice.", "REG002"),
+        ]:
+            with self.subTest(text=text):
+                self.assertIn(rule, self.ids(self.report(text)))
+        for text in [
+            "I shared the log file.",
+            "Thank you for the link.",
+            "I said that being honest matters.",
+        ]:
+            with self.subTest(text=text):
+                self.assertNotIn("REG001", self.ids(self.report(text)))
+                self.assertNotIn("REG002", self.ids(self.report(text)))
+
+    def test_inflated_diction_and_praise_growth(self):
+        for text, rule in [
+            ("They utilized the new API.", "REG003"),
+            ("Prior to the update, it worked.", "REG003"),
+            ("It exceeded my expectations.", "REG004"),
+            ("The performance is nothing short of remarkable.", "REG004"),
+            ("It really resonated with me.", "REG004"),
+            ("Every feature feels carefully crafted.", "REG004"),
+            ("It sets it apart from the competition.", "REG004"),
+            ("They provide invaluable resources.", "REG004"),
+        ]:
+            with self.subTest(text=text):
+                self.assertIn(rule, self.ids(self.report(text)))
+        for text in [
+            "CPU utilization is high.",
+            "The prior approval was needed.",
+            "The render was slow.",
+            "I took it apart to clean it.",
+        ]:
+            with self.subTest(text=text):
+                self.assertNotIn("REG003", self.ids(self.report(text)))
+                self.assertNotIn("REG004", self.ids(self.report(text)))
+
+    def test_closers_assistant_framing_and_hedging(self):
+        for text, rule in [
+            ("Feel free to reach out if you have questions.", "REG009"),
+            ("Don't hesitate to ask if you need help.", "REG009"),
+            ("Hope that gives you some perspective!", "REG009"),
+            ("I'd be happy to help with that.", "REG009"),
+            ("Let me break it down for you.", "REG016"),
+            ("Here's what you need to know.", "REG016"),
+            ("Your mileage may vary.", "REG016"),
+            ("There are definitely pros and cons to consider.", "REG015"),
+            ("It strikes a good balance between features and price.", "REG015"),
+            ("It's a double-edged sword.", "REG015"),
+            ("What really struck me was the attention to detail.", "REG017"),
+            ("I recently had the opportunity to try it.", "REG017"),
+            ("The key thing to understand is that it saves time.", "REG017"),
+        ]:
+            with self.subTest(text=text):
+                self.assertIn(rule, self.ids(self.report(text)))
+        for text in [
+            "Let me know when you're ready.",
+            "I'm happy with the result.",
+            "Let me check the logs.",
+            "What do you need to know?",
+            "The pros outweigh the cons here.",
+            "The thing is broken.",
+            "I recently updated the app.",
+        ]:
+            with self.subTest(text=text):
+                ids = self.ids(self.report(text))
+                self.assertNotIn("REG009", ids)
+                self.assertNotIn("REG015", ids)
+                self.assertNotIn("REG016", ids)
+                self.assertNotIn("REG017", ids)
+
+    def test_engagement_endings_and_exclamation_density(self):
+        self.assertIn("PLAT003", self.ids(self.report("Let me know your thoughts.", "--artifact", "reply")))
+        self.assertIn("PLAT003", self.ids(self.report("Has anyone else experienced this?", "--artifact", "reply")))
+        self.assertIn("PLAT003", self.ids(self.report("I'd love to hear your thoughts.", "--artifact", "reply")))
+        self.assertNotIn("PLAT003", self.ids(self.report("Has the update fixed the crash?", "--artifact", "reply")))
+        self.assertIn("REG018", self.ids(self.report("Wow! Amazing! I love it!")))
+        self.assertNotIn("REG018", self.ids(self.report("Wow! It works.")))
+
+    def test_plain_text_masks_code_quotes_and_links(self):
+        text = ('`utilize()` is fast.\n\n'
+                '> Moreover, the old plan was cheaper.\n'
+                'I disagree with that charge.\n\n'
+                'See [the seamless guide](https://example.invalid/x) for details.\n\n'
+                '```txt\nFeel free to reach out.\n```\n')
+        self.assertEqual(self.ids(self.report(text)), set())
+
+    def test_plain_text_quote_continuation_still_scans(self):
+        report = self.report('> It is robust.\nMoreover, it is cheap.')
+        findings = [f for f in report["files"][0]["findings"] if f["rule_id"] == "REG002"]
+        self.assertEqual(len(findings), 1)
+        self.assertEqual(findings[0]["excerpt"], "Moreover")
+
+    def test_assistant_framing_exception_covers_idiomatic_disclaimers(self):
+        catalog = json.loads(CATALOG.read_text(encoding="utf-8"))
+        rule = next(r for r in catalog["rules"] if r["id"] == "REG016")
+        self.assertIn("idiomatic disclaimers", rule["exceptions"])
+
+    def test_obvious_slop_samples_are_flagged(self):
+        slop = ("This is a great question and I appreciate you bringing it up! "
+                "So here's my take on it. There are definitely pros and cons to consider. "
+                "That being said, I would still recommend it because it exceeded my expectations. "
+                "Hope that gives you some perspective! Don't hesitate to ask if you need more info.")
+        ids = self.ids(self.report(slop, "--artifact", "reply"))
+        self.assertTrue({"REG001", "REG002", "REG004", "REG009", "REG015"} <= ids)
+
     def test_qualifier_cluster_is_local_and_protected(self):
         self.assertIn("PLAIN003", self.ids(self.report("Basically, actually, it works.")))
         for text in [

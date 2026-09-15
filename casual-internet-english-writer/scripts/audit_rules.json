@@ -16,12 +16,20 @@
       "action": "Start with the supplied answer or scene if the opening adds nothing.",
       "exceptions": "Keep genuine agreement, courtesy, deliberate imagery, and established voice.",
       "positive": [
-        "In today's fast-paced world, this helps."
+        "In today's fast-paced world, this helps.",
+        "I just wanted to share my experience with this tool.",
+        "Thank you for sharing this!",
+        "What a great topic!",
+        "That's a really good point, I agree.",
+        "So here's my take on it.",
+        "This is a great question and I appreciate you bringing it up!"
       ],
       "negative": [
-        "Yeah, that helped."
+        "Yeah, that helped.",
+        "I shared the log file.",
+        "Thank you for the link."
       ],
-      "pattern": "\\A\\s*(?:great (?:question|point)[!.]?|certainly[!,]?|in (?:today['’]s|this) [^.!?\\n]{0,60}(?:world|era|age))"
+      "pattern": "\\A\\s*(?:great (?:question|point)[!.]?|certainly[!,]?|in (?:today['’]s|this) [^.!?\\n]{0,60}(?:world|era|age)|i (?:just wanted to share|appreciate you (?:sharing|bringing this up)|want to (?:share|talk about))|thank (?:s|you) for (?:sharing|bringing this up|posting)|(?:what a (?:really )?(?:great|good|interesting|important)|th(?:at|is)(?:'s|’s| is) a (?:really )?(?:great|good|interesting|important)) (?:question|point|topic)|so here(?:'s|’s| is) my take)"
     },
     {
       "id": "REG002",
@@ -38,12 +46,17 @@
       "action": "Remove an empty transition; preserve the actual logical connection.",
       "exceptions": "Keep transitions that genuinely orient a complex explanation.",
       "positive": [
-        "Moreover, it works."
+        "Moreover, it works.",
+        "That being said, I still recommend it.",
+        "It's worth noting that the free version works.",
+        "First and foremost, the interface is intuitive.",
+        "All things considered, it's a solid choice."
       ],
       "negative": [
-        "But it still fails."
+        "But it still fails.",
+        "I said that being honest matters."
       ],
-      "pattern": "\\b(?:moreover|furthermore|additionally|notably|importantly|it is important to note)\\b"
+      "pattern": "\\b(?:moreover|furthermore|additionally|notably|importantly|it is important to note|that being said|having said that|it(?:'s|’s| is) worth (?:noting|mentioning)|first and foremost|all things considered)\\b"
     },
     {
       "id": "REG003",
@@ -64,12 +77,15 @@
       "positive": [
         "We should utilize this.",
         "I used it in order to save time.",
-        "It failed due to the fact that the disk was full."
+        "It failed due to the fact that the disk was full.",
+        "They utilized the new API.",
+        "Prior to the update, it worked."
       ],
       "negative": [
-        "CPU utilization is high."
+        "CPU utilization is high.",
+        "The prior approval was needed."
       ],
-      "pattern": "\\b(?:delve into|navigate the complexities(?: of)?|rich tapestry|utilize|facilitate|commence|stands as|in the context of|with regard to|in terms of|users are advised to|in order to|due to the fact that)\\b"
+      "pattern": "\\b(?:delve into|navigate the complexities(?: of)?|rich tapestry|utiliz(?:e|es|ed|ing)|facilitat(?:e|es|ed|ing)|commenc(?:e|es|ed|ing)|embark(?:s|ed|ing)? on|plethora of|aforementioned|in light of|with the exception of|prior to|subsequent to|a (?:large number|wide range) of|in the event (?:of|that)|for the purpose of|in a \\w+ manner|stands as|in the context of|with regard to|in terms of|users are advised to|in order to|due to the fact that)\\b"
     },
     {
       "id": "REG004",
@@ -86,12 +102,21 @@
       "action": "Use an existing concrete benefit, or simplify the claim without inventing one.",
       "exceptions": "Keep genuine enthusiasm and actual technical properties; the script cannot establish support.",
       "positive": [
-        "This app is a game-changer."
+        "This app is a game-changer.",
+        "It exceeded my expectations.",
+        "The performance is nothing short of remarkable.",
+        "It really resonated with me.",
+        "Every feature feels carefully crafted.",
+        "It sets it apart from the competition.",
+        "They provide invaluable resources."
       ],
       "negative": [
-        "The app downloads maps."
+        "The app downloads maps.",
+        "The render was slow.",
+        "I took it apart to clean it.",
+        "The perspective from the window is nice."
       ],
-      "pattern": "\\b(?:robust|seamless|game[- ]changer|transformative|testament to innovation)\\b"
+      "pattern": "\\b(?:robust|seamless|game[- ]changers?|transformative|testament to innovation|incredibly intuitive|nothing short of \\w+|exceed(?:s|ed|ing)? (?:my |our |all )?expectations|quite the journey|pays? dividends|carefully crafted|well[- ]thought[- ]out|thoughtful design|sets? it apart|resonat(?:e|es|ed|ing) with|a breath of fresh air|unique perspective|visually stunning|invaluable resources?)\\b"
     },
     {
       "id": "REG005",
@@ -196,12 +221,19 @@
       "action": "Stop at the final contribution unless the user requested a summary.",
       "exceptions": "Keep a requested summary, actual reassurance, emotional ending, or supplied punchline.",
       "positive": [
-        "In conclusion, it works."
+        "In conclusion, it works.",
+        "Feel free to reach out if you have questions.",
+        "Don't hesitate to ask if you need help.",
+        "Let me know if you have any questions.",
+        "Hope that gives you some perspective!",
+        "I'd be happy to help with that."
       ],
       "negative": [
-        "Thanks, that worked."
+        "Thanks, that worked.",
+        "Let me know when you're ready.",
+        "I'm happy with the result."
       ],
-      "pattern": "\\b(?:in conclusion|to sum up|in summary|at the end of the day|the key takeaway is|i hope this (?:helps|comprehensive overview))\\b"
+      "pattern": "\\b(?:in conclusion|to sum up|in summary|at the end of the day|all in all|the key takeaway is|i hope this (?:helps|was helpful|comprehensive overview)|hope (?:this|that) (?:helps|was helpful)|hope that gives you \\w+(?: \\w+){0,4} perspective|feel free to reach out|don(?:'t|\\u2019t|t) hesitate to ask|let me know if you (?:have any questions|need \\w+(?: \\w+){0,3} info|want me to elaborate)|i(?:'d|’d| would) be happy to (?:help|answer|elaborate)|happy to (?:help|answer|elaborate)|looking forward to your (?:feedback|thoughts)|let me know if you(?:'d|’d| would) like me to elaborate)\\b"
     },
     {
       "id": "REG010",
@@ -239,7 +271,8 @@
       "action": "Keep only links that perform a distinct logical job.",
       "exceptions": "This is a review trigger, not a transition quota; longer explanations may need links.",
       "positive": [
-        "Moreover, it works. Furthermore, it is cheap."
+        "Moreover, it works. Furthermore, it is cheap.",
+        "That being said, it works. Having said that, it is cheap."
       ],
       "negative": [
         "But it failed, so I restarted it."
@@ -311,6 +344,108 @@
       "pattern": "\\b(?:tbh|ngl|lol|lowkey|bro|idk)\\b|\\bi\\b|\\b(?:dont|cant|im)\\b|\\.{4,}|[!?]{3,}"
     },
     {
+      "id": "REG015",
+      "name": "Staged balanced hedging",
+      "method": "automated",
+      "detector": "regex",
+      "covers": [
+        "Staged balanced hedging"
+      ],
+      "sources": [
+        "references/casual-register.md#Conditional repairs"
+      ],
+      "reason": "A staged both-sides frame may bury the claim instead of weighing a real trade-off.",
+      "action": "Keep the concrete comparison; remove only the empty balancing frame.",
+      "exceptions": "Keep genuine trade-offs with concrete detail on each side.",
+      "positive": [
+        "There are definitely pros and cons to consider.",
+        "It has its pros and cons.",
+        "It strikes a good balance between features and price.",
+        "It's a double-edged sword."
+      ],
+      "negative": [
+        "The pros outweigh the cons here.",
+        "I weighed the pro and con arguments."
+      ],
+      "pattern": "\\b(?:there are (?:definitely |certainly )?(?:pros and cons|advantages and disadvantages)(?: to consider)?|it has its pros and cons|it strikes a good balance between|(?:it|this)(?:'s|’s| is) a double[- ]edged sword|on one hand\\b[^.!?]{0,200}\\bbut on the other hand)\\b"
+    },
+    {
+      "id": "REG016",
+      "name": "Assistant or explainer framing",
+      "method": "automated",
+      "detector": "regex",
+      "covers": [
+        "Assistant or explainer framing"
+      ],
+      "sources": [
+        "references/casual-register.md#Working register"
+      ],
+      "reason": "Explainer framing can sound like an assistant addressing the thread rather than a participant contributing.",
+      "action": "State the contribution directly without announcing the explanation.",
+      "exceptions": "Keep genuine walkthroughs and tutorials where the framing orients the reader, and idiomatic disclaimers that carry a concrete caveat next to the claim.",
+      "positive": [
+        "Let me break it down for you.",
+        "Here's what you need to know.",
+        "To answer your question, yes.",
+        "Your mileage may vary."
+      ],
+      "negative": [
+        "Let me check the logs.",
+        "I can help tomorrow.",
+        "What do you need to know?"
+      ],
+      "pattern": "\\b(?:let me (?:break it down|walk you through|elaborate on)|here(?:'s|’s| is) what you need to know|to answer your question|your mileage may vary|if you(?:'d|’d| would) like me to elaborate)\\b"
+    },
+    {
+      "id": "REG017",
+      "name": "Theatrical emphasis framing",
+      "method": "automated",
+      "detector": "regex",
+      "covers": [
+        "Theatrical emphasis framing"
+      ],
+      "sources": [
+        "references/casual-register.md#Conditional repairs"
+      ],
+      "reason": "A dramatic frame may inflate an ordinary observation before it is stated.",
+      "action": "Lead with the observation; keep the frame only if it carries real emphasis.",
+      "exceptions": "Keep genuine personal reactions and narrative voice that do real work.",
+      "positive": [
+        "What really struck me was the attention to detail.",
+        "I recently had the opportunity to try it.",
+        "The key thing to understand is that it saves time.",
+        "Here's the thing, my dealer quoted me a higher price."
+      ],
+      "negative": [
+        "The thing is broken.",
+        "I recently updated the app.",
+        "What I find interesting is the price."
+      ],
+      "pattern": "\\b(?:what really struck me was|what i found particularly (?:interesting|compelling|striking) is|the key (?:thing|point)(?: to understand)? is(?: that)?|here(?:'s|’s| is) the thing|i recently had the opportunity to)\\b"
+    },
+    {
+      "id": "REG018",
+      "name": "Concentrated exclamation emphasis",
+      "method": "automated",
+      "detector": "exclamation_density",
+      "covers": [
+        "Concentrated exclamation emphasis"
+      ],
+      "sources": [
+        "references/casual-register.md#Review cues"
+      ],
+      "reason": "Several exclamation-ended sentences in one paragraph may manufacture enthusiasm.",
+      "action": "Keep exclamations that mark genuine emphasis; end the rest with periods.",
+      "exceptions": "Keep genuine excitement, quoted dialog, and exclamations already supported by the voice.",
+      "positive": [
+        "Wow! Amazing! I love it!"
+      ],
+      "negative": [
+        "Wow! It works.",
+        "Thanks, that worked."
+      ]
+    },
+    {
       "id": "PLAT002",
       "name": "Reply title or greeting",
       "method": "automated",
@@ -351,12 +486,16 @@
       "action": "Check the intended question or boundary; remove only an unsolicited invitation.",
       "exceptions": "Keep the user’s actual question and a requested advice invitation.",
       "positive": [
-        "It works. Anyone else?"
+        "It works. Anyone else?",
+        "Let me know your thoughts.",
+        "Has anyone else experienced this?",
+        "I'd love to hear your thoughts."
       ],
       "negative": [
-        "Why does it crash on my phone?"
+        "Why does it crash on my phone?",
+        "Has the update fixed the crash?"
       ],
-      "pattern": "\\b(?:anyone else|thoughts|what do you (?:all )?think)\\?\\s*\\Z"
+      "pattern": "(?:\\b(?:anyone else|thoughts|what do you (?:all )?think)[^?]*\\?|\\b(?:let me know (?:your thoughts|what you think)|i(?:'d|’d| would) love to hear (?:your|everyone(?:'s|\\u2019s|s)?) thoughts|has anyone else (?:experienced|tried|noticed|dealt with))[^?!.]*[?!.])\\s*\\Z"
     },
     {
       "id": "PLAT004",
