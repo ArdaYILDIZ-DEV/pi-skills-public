@@ -1,6 +1,7 @@
 ---
 name: writing-great-system-prompts
 description: "Design, audit, and harden persistent LLM system prompts, agent personas, and tool instructions: authority, permissions, workflow, failure handling, and output contracts. Use for 'sistem promptu yaz', 'persona oluştur', 'ajan kurallarını düzelt', 'araç açıklaması yaz', or conflicting agent policies and prompt-injection boundaries. Not for a one-off task prompt, repository AGENTS.md/CLAUDE.md, or skill packaging unless that artifact also requires a persistent-policy review."
+disable-model-invocation: true
 ---
 
 # Writing Great System Prompts
