@@ -1,12 +1,23 @@
-# Litmus Tests
+# Acceptance checks
 
-A clean deterministic scan does not pass these — they need a human-grade read.
+Use after substantial design/review. Check the brief's criteria on actual content, not a generic taste score.
 
-1. **Brand-swap.** Cover the logo. Could this screen belong to three other brands in the same category unchanged? If yes, the signature move isn't working.
-2. **Squint.** Blur your eyes or shrink the screenshot. Does the hierarchy still read — one clear focal point, not a flat gray field?
-3. **First viewport.** Does it alone communicate what this is and who it's for, with no scrolling?
-4. **Mobile-amputation.** At 375px, is every critical action still reachable, or did a feature quietly disappear?
-5. **Read-aloud.** Read the copy end to end. Does it sound like a person describing a real thing, or confident-sounding filler?
-6. **One-more-removal.** Can you delete one more decorative element without losing meaning? If yes, it wasn't earning its place.
-7. **Editorial justification.** Serif display, earth-tone palettes, and editorial voice are legitimate only when the product context supports them (editorial, cultural, hospitality, fashion, craft). On dev tools, SaaS, fintech, or dashboards, they need an explicit reason — no answer means autopilot, revert to neutral.
-8. **Render & diff.** A lint-clean pass on source code is not a verified pass — reasoning about markup is not the same as looking at pixels. If a browser, screenshot, or preview tool is available, capture the actual rendered surface at a wide viewport (~1920px) and a narrow one (~375-390px) and hold it directly against tests 1-7 and the hard-no list in `craft-and-antipatterns.md`. If no such tool exists in this environment, say so explicitly rather than silently treating the code-level review as equivalent.
+## Visual judgment
+
+- **Subject fit:** characteristic content and detail belong to this product, not an interchangeable template.
+- **Hierarchy:** a reduced-size screenshot still shows task priority; apps may have several coordinated work regions.
+- **Composition:** equality/asymmetry, widths, grouping, and order express real relationships.
+- **Reading:** actual fonts, titles/locales, measure, and leading work; copy explains real actions.
+- **Coherence:** type, color, media, shape, and motion support the same direction. Remove redundant decoration, not expressive identity by default.
+
+## Observable checks
+
+1. Render representative desktop (often 1280–1440px), roughly 375–390px mobile, and relevant narrow desktop slots/states. Record exact sizes. Investigate document scroll width exceeding viewport width; intentional data-region scrolling is different from broken page overflow.
+2. Exercise keyboard flow, visible/unobscured focus, menu/dialog restoration, mobile navigation, validation, loading/empty/error/selection. Use approved fixtures, not live destructive actions.
+3. Check 200% zoom/text enlargement, applicable 320 CSS-pixel reflow conditions/exceptions, and reduced-motion variants. Critical content/actions remain available.
+4. Measure actual pairs without rounding up: normal text ≥4.5:1; large text ≥3:1 (24px regular or approximately 18.67px bold); essential non-text UI ≥3:1 where applicable. Include changed states/themes; status meaning has non-color cues.
+5. Run relevant existing tests/build and compare preserved routes, fields, bindings, semantics, and token consumers.
+
+Report **source-reviewed, rendered, interaction-tested, measured, or unverified** as applicable. A screenshot does not test behavior; a source review does not verify pixels; flat color ratios do not certify WCAG compliance. Name unavailable checks and the next needed evidence.
+
+Fix causes and recheck affected paths. Stop at scoped acceptance; report unresolved blockers rather than an invented pass. These checks are not model-selection or A/B trials.

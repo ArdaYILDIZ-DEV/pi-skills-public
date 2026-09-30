@@ -1,107 +1,66 @@
-# Craft Rules and Antipatterns
+# Implementation craft
 
-Apply per artifact type — a dashboard uses these differently from a landing page. Each section pairs what to do with what to reject.
+Read affected sections. Ranges below are starting points, not universal rules; preserve a fitting existing system.
 
-## Hard no — scan this first
+## Typography and locale
 
-Grouped to match the sections below, so a hit can be logged straight to its category. A deterministic pass should catch every one of these before a judgment pass starts. One hit is a smell; more than one on the same surface is a verdict.
+- Define needed title, section, body/UI, metadata, and code/data roles. Differentiate size/weight/width/placement before adding families. Verify licensing, real weights, loading, and fallbacks.
+- Start prose near 1rem, unitless 1.45–1.65 leading and 45–75ch measure even when left-aligned. Compact UI can be smaller if readability/zoom survives. A 1.2–1.333 scale can help; adjust optically rather than enforcing ratios.
+- Use rem-based sizes and bounded fluid display sizing; test zoom. Tune tracking by face/size, not blanket tightening. Heading semantics follow structure; numeric columns use tabular figures and appropriate alignment.
+- Set correct document/local fragment language. Verify actual glyphs/shaping; `unicode-range` and `locl` declarations do not create support. For Turkish inspect `İ ı Ş ş Ğ ğ Ç ç Ö ö Ü ü`; use locale-aware presentation casing such as `toLocaleUpperCase('tr-TR')`, not business-logic changes.
 
-**Typography**
-- Inter, Roboto, or system-ui as the primary typeface with no stated reason
-- Inter + slate-900 (or any single-font-plus-single-neutral combo) as the whole system
-- Body text below 14px; line height below 1.3
-- Italic serif display hero headline (Fraunces, Recoleta, Playfair, Cormorant, siblings) as a default, especially one accent word swapped into serif just to feel "tasteful"
-- Kickers or eyebrows above headings on marketing/product surfaces
+## Composition and responsive structure
 
-**Color**
-- Purple-to-white or purple/violet gradients on buttons, text, backgrounds, or hero meshes
-- Gradient text on headings or metrics
-- Contrast below WCAG AA (4.5:1 body, 3:1 large); pure black backgrounds or pure white text
+Choose layout from content relationships; preserve shared alignment while separating reading, work, and media widths. Use proximity before boxes. A 4px/8px spacing scale is practical, not mandatory; name recurring optical corrections. Group gaps should be smaller than major transitions.
 
-**Layout**
-- Centered hero over a dark gradient mesh or radial glow
-- Three or four equal feature cards as the default section shape
+A demonstration/explanation split can replace generic icon-card claims. Hypothetical structure—populate with supplied verified proof before shipping:
 
-**Components and states**
-- Every button styled primary — no ranked hierarchy of actions
-- Hero mock forms with no real labels, validation, or submission mechanics
-- Faux macOS window chrome (red/yellow/green dots) around code snippets with no copy button or runnable code
-- Caricature comparison tables (rival column all red marks, own column all green marks)
-- Scattered non-functional chip badges (POPULAR, AI INSIDE)
+```html
+<section class="showcase" aria-labelledby="workflow-title">
+  <div><h2 id="workflow-title">Create, inspect, then remove</h2><p>Supplied workflow explanation.</p></div>
+  <div class="showcase__proof"><!-- Supplied verified command/result. --></div>
+</section>
+```
 
-**Motion**
-- Infinite-loop micro-animations, pulse, blink, or marquee on non-live indicators
-- Hover transitions or entrance choreography applied to every card or section
+```css
+.showcase { display: grid; gap: var(--space-section); }
+.showcase > * { min-inline-size: 0; }
+.showcase p { max-inline-size: 60ch; }
+@media (min-width: 56rem) {
+  .showcase { grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); }
+}
+```
 
-**Imagery**
-- Generic glassmorphism or decorative grid-line backgrounds with no structural purpose
-- Logo walls at low opacity backing unprovable claims, with no attribution
+Define the spacing token; proportions follow actual importance, not this example.
 
-**Copy**
-- Jane-Doe data: placeholder names/avatars, round-number stats, Acme-style invented brands
-- Buzzword verbs (elevate, seamless, unleash, next-gen, revolutionary)
-- Em-dashes in headlines, labels, CTAs, and marketing copy
+For components in sidebars/drawers/split panes, respond to available slot width when viewport queries would misfire. Check browser/project support; intrinsic wrapping is also valid.
 
-If none of these fire, move to the full sections below — a lint-clean scan still needs the judgment calls that follow.
+```css
+.detail-slot { container: detail / inline-size; }
+.detail { display: grid; gap: var(--space-group); min-inline-size: 0; }
+.detail > * { min-inline-size: 0; }
+@container detail (min-width: 28rem) {
+  .detail { grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); }
+}
+```
 
-## Typography
+The wrapper contains; the child responds. Inline-size avoids block-size containment surprises. Test narrow slots on desktop, not just mobile. Use deliberate accessible scrolling for long code/tables; do not globally clip overflow.
 
-Compose a real hierarchy with at least two weights or sizes at roughly 1.25+ ratio. Cap display type near 6rem; set long headlines smaller instead of blowing up full sentences. Give headings more space above than below so each binds to its content.
+## Color and surfaces
 
-Reject: single font for the whole page without justification; Inter/Roboto/system as primary without a neutral-standard reason; body below 14px, line height below 1.3; italic serif display as default hero headline (Fraunces, Recoleta, Playfair, Cormorant and siblings) especially one accent word swapped into serif just to feel tasteful; kickers and eyebrows above headings on marketing/product surfaces (fold the words into the heading or body; editorial rubrics survive as plain metadata lines, never pills); long ALL-CAPS passages; skipped heading levels; justified body without hyphenation; functional text below 11px (only non-interactive legal smallprint may touch 10px).
+- Map primitives to semantic text, surface, action/on-action, focus, border, and relevant status roles. Generate only needed shades/states.
+- Establish dominance and emphasis before hue harmony. Neutral-heavy products may use scarce accent; expressive brands can use several coherent colors. Analogous/complementary relationships and gradients are options, not automatic taste.
+- OKLCH/OkLab support perceptual derivation; lightness is not WCAG luminance. Gamut depends on all channels—no fixed chroma ceiling guarantees it. Inspect actual converted/rendered colors and fallbacks.
+- Design required dark mode separately: visible surface/elevation steps and appropriate text/accent intensity. Tinted off-black is useful, not compulsory; do not add an unrequested theme.
+- Translucent chrome needs contrast across underlying content, usable fallback, and performance checks. Photo/gradient text needs actual background sampling or a stable text surface; flat-pair checks are insufficient.
 
-## Color and contrast
+## Components, assets, and motion
 
-Author palette in OKLCH with named roles. Dark mode is designed, not inverted: near-black tinted toward brand hue, off-white text, elevation through lightness steps, desaturated accents.
-
-Reject: purple/violet gradients on buttons, text, or backgrounds; gradient text on headings or metrics; cyan-on-dark as the whole palette; dark background with colored glow shadows as the default cool look; gray text on colored backgrounds; contrast below WCAG AA (4.5:1 body, 3:1 large); pure black backgrounds or pure white text; calm-editorial autopilot (warm ivory + olive/clay/terracotta with airy serif) applied to dev tools/SaaS/fintech/dashboards without explicit justification; radial halo or spotlight haze behind sections; photography buried under an opaque wash.
-
-## Layout
-
-Compose with one base unit (4px or 8px — no off-grid arbitrary padding, margin, or gap values), intentional grids, whitespace as confidence. Break the centered-max-width-column reflex: on marketing surfaces center hero/CTAs and left-align the rest; at high variance use asymmetric or split viewports; dashboards skip hero centering and align to the grid. Vary rhythm instead of repeating one section shape. Heroes fit the viewport: headline at most two lines, subtext at most 20 words, CTA visible without scroll, at most four text elements in the narrative stack.
-
-Reject: everything centered with monotonous spacing; lines past ~80 characters; cramped padding under 8px; wrapping everything in cards; nesting cards inside cards; side/top accent stripes as decoration rather than status (never a stripe plus a chip announcing the same signal twice); icon tile stacked above every heading; identical icon-heading-text grids; hero metric row (big number + small label + three stats); numbered 01-02-03 markers on non-sequences; stat banners/marquees on non-live content; every button styled primary; complex settings crammed into a scrolling modal; three zigzag splits in a row.
-
-## Components and states
-
-Design the full state matrix (default, hover, active, focus, disabled, loading, error, selected) — not just rest state. Rank buttons by importance instead of coloring by meaning. Forms use real labels, correct input types, inline validation that keeps the input. Tables: left-align text, right-align tabular numerals, light separators, sticky headers, visible sort states. Navigation, overlays, empty, loading, and error states are designed, not leftovers. Lists past five items get search, filter, or grouping. Never change font weight on hover/selected — shift color or background so layout never jumps.
-
-Reject: hero mock forms with no labels, validation, or submission mechanics; faux macOS window chrome (red/yellow/green dots) around code snippets with no copy button or runnable code; caricature comparison tables (rival column of red marks, own column of green marks); scattered non-functional chip badges (POPULAR, AI INSIDE).
-
-## Motion
-
-Animate transform and opacity first; reach for blur, clip-path, or shadow only when smooth, under a duration and easing token scale (default ease-out under 300ms). Scale popovers from their trigger. Honor reduced-motion with a static fallback. Reserve pulse for genuinely live, changing data only.
-
-Reject: bounce or elastic easing; animating width, height, margin, or padding; entrance choreography on every section; hover transitions on every card; pulse/blink/marquee on non-live indicators.
-
-## Iconography
-
-One family per project, one grid, one stroke width. Default to Phosphor (pairs with shadcn/ui); Hugeicons, Radix, or Tabler with a stated reason; Lucide only on request or existing dependency. Never hand-roll SVG icons — install a second library or compose from primitives.
-
-Reject: emoji as icons; mixed icon families with inconsistent stroke; hand-drawn SVG gap-fillers.
-
-## Imagery
-
-Art-direct imagery as a system: real product visuals over stock or abstract blobs. When an asset is unavailable, use an intentional placeholder with fixed aspect ratio and caption. Charts use a real library or hand-authored SVG with explicit axes and scales; scaleless decorative sparklines are banned.
-
-Reject: people-pointing-at-laptops; gradient orbs; corporate-Memphis; raw generator defaults; hero visuals from primitive-shape SVG scenes; logo walls at low opacity with unprovable claims and no attribution (replace with quantified metrics plus one attributed quote, or delete the section); decorative glassmorphism and grid-line backgrounds with no structural purpose.
-
-## Copy
-
-Controls name their action, errors name the problem and the recovery, each idea said once. Data looks collected, not generated: messy figures, locale-real names, invented brands paired with invented marks.
-
-Reject: buzzword verbs (elevate, seamless, unleash, next-gen, revolutionary); manufactured-contrast aphorisms repeated across sections; theater-framing; em-dashes in headlines, labels, CTAs, and marketing copy (narrative editorial prose flags only on saturation); Jane-Doe data (placeholder names/avatars, round-number stats, Acme-style brands, filler AI-tone phrases); the same literal text repeated across slots of one container.
-
-## Accessibility
-
-Build to WCAG 2.2 AA: visible managed focus, keyboard operability, labels on every control, targets at least 24px, 4.5:1 body contrast, reduced-motion support. Theme browser surfaces (text selection, caret, scrollbars, focus rings, underline offset) from the palette.
-
-## Micro-chrome (countable)
-
-Middle-dot: at most one per line in metadata strips. Decorative dots: zero by default, only real semantic state. One hairline per list (top or bottom between rows, never both). No scroll cues, no locale/time/weather strips, no version labels in hero or marketing footers. No pills overlaid on images, no decorative photo-credit captions, no hero-bottom decoration strips. No generic step labels (Stage 1, Step 2) — the verb-noun is the label.
-
-Signature exemption: at DESIGN_VARIANCE 8+, HUD telemetry or coordinate stamps declared as the DESIGN.md signature move and tied to live state are permitted; they must never obscure controls and must collapse on mobile.
-
-## DESIGN.md drift
-
-Fonts, colors, radii, and sizes outside the documented tokens count as drift. Adding off-ramp values to DESIGN.md to excuse them (ramp-laundering) fails. Exemptions: border/hairline widths, canvas values behind a token bridge, alpha tints of listed tokens (advisory).
+- Define shared variants by role. Cards group/select objects; borders, radii, and elevation should express those roles rather than wrap everything identically.
+- Forms preserve associated labels, correct types, field values, inline errors, and recovery. Tables preserve headers, keys, sorting, numeric alignment, and accessible overflow. Add search/filtering for retrieval needs, not item-count quotas.
+- Retain menu/dialog keyboard, dismissal, focus restoration, and scroll behavior. Expanded hit areas must not overlap neighbors. Loading labels and dimensions stay stable.
+- Reuse coherent icon size/weight and existing tooling. Simple verified SVG/marks can work; platform-dependent emoji must not be the sole critical label.
+- Art-direct authorized assets with responsive crops, reserved dimensions, and appropriate alt text. Charts need truthful scales/labels; complex interaction should reuse fitting tooling. Photos are optional; missing assets remain explicit gaps.
+- Copy names actual actions and recovery; keep approved/legal meaning. Fixture data is not real proof. Avoid fabricated metrics, endorsements, or urgency.
+- State feedback often starts around 120–200ms, overlays 200–300ms. Match distance/task/brand; prefer transform/opacity where suitable, measure cost for other properties. Fitting springs are valid. Provide usable reduced-motion/static variants and pause/stop controls where required.
+- Keep useful labels, credits, and identity details; remove redundant chrome. Do not use decorative-count quotas or motion as a substitute for clarity.

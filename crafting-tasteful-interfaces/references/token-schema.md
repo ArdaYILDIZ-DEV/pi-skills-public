@@ -1,54 +1,41 @@
-# Token Schema (DESIGN.md)
+# Design contract template
 
-Write this file at the project root (or scoped deliverable directory)
-before or alongside code. If code drifts later, this file wins.
+Use existing token/docs conventions first. Create/update `DESIGN.md` only within authorized scope; critique creates nothing. Name the actual code/config token authority, not a competing Markdown source of truth. Investigate doc/code conflicts before changing the system.
+
+Adapt this authoring template; remove unused fields and fill actual decisions before delivery:
 
 ```markdown
-# DESIGN.md
+# Design contract
 
-## Context
-- Artifact / audience / primary action:
-- Aesthetic direction (official system or custom, and why; one committed direction, not a hedged blend):
-- Dials: DESIGN_VARIANCE=_ MOTION_INTENSITY=_ VISUAL_DENSITY=_
-- Signature move:
+## Scope
+- Artifact / audience / primary task:
+- Preserved brand, content, routes, and behavior:
+- Direction / linked choices / characteristic detail:
+- Optional dials: DESIGN_VARIANCE / MOTION_INTENSITY / VISUAL_DENSITY
+- Token authority and consumers (actual paths):
 
-## Typography
-- Display font / Body font:
-- Type scale ratio:
-- Base size / line height / tracking:
-
-## Color (author in OKLCH)
-| Role | Value | Notes |
+## Tokens
+| Role | Value/reference | Use, states, responsive rules |
 |---|---|---|
-| bg | | |
-| surface | | |
-| fg | | |
-| muted | | |
-| border | | |
-| accent | | |
-| accent-fg | | |
-| success | | |
-| warning | | |
-| error | | |
-
-## Spacing & shape
-- Base unit (4px or 8px):
-- Radii (max 2):
-- Shadow approach (one):
-
-## Iconography
-- Library / stroke width / grid:
-
-## Motion
-- Default ease/duration:
-- Reduced-motion fallback:
+| Title / body / metadata / code | | |
+| Canvas / surface / elevated | | |
+| Text / secondary text | | |
+| Action / on-action / focus / border | | |
+| Status roles | | |
+| Spacing / widths / shape / elevation | | |
+| Motion / reduced-motion variant | | |
+- Type sizes, weights, leading, tracking/measure, loading and locale coverage:
+- Primitive-to-semantic mapping; themes/gamut/fallbacks:
+- Content hierarchy, alignment, reflow/slot/overflow behavior:
+- Asset/icon treatment and component/state variants:
+- Recurring optical exceptions and reasons:
 
 ## Verification
-- Viewports checked (wide / narrow):
-- Date:
-- Method (rendered screenshot / code-level review only):
-- Hard-no scan result (pass / hits found):
-
-## Drift log
-- Date — value — reason approved by user
+- Commands / exit codes; viewports / slots / states / observations:
+- Actual contrast pairs/ratios and method:
+- Preserved-contract comparison:
+- Missing assets, unverified checks, unresolved drift:
+- Approved system changes and reasons:
 ```
+
+Record values the browser uses. Working hex/RGB/HSL formats are valid; use OKLCH/OkLab when useful for derivation. Add only needed tokens. Recurring optical corrections can be named; adding unused tokens after the fact to excuse inconsistent code does not establish coherence.
