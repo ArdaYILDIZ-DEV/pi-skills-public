@@ -87,7 +87,7 @@
       "id": "near-miss-generic-en",
       "kind": "selection",
       "request": "Remove generic AI design patterns from this frontend, keeping its bold editorial identity. I do not want an Apple-inspired look.",
-      "expected_selection": "avoid-ai-design",
+      "expected_selection": "no-ai-slop-design",
       "expected_behaviors": [
         "Prefer the available generic UI-cleanup specialty rather than this Apple-specific skill.",
         "Preserve the requested editorial direction."
@@ -96,6 +96,49 @@
         "Load this skill just because the request mentions frontend design.",
         "Replace the requested direction with Apple-like system styling."
       ]
+    },
+    {
+      "id": "revise-dense-operations-en",
+      "kind": "selection-and-execution",
+      "request": "Give this daily operations workspace an Apple-inspired feel while preserving visible comparison rows, units, navigation order, filters, brand, and all actions. No new dependencies or storage.",
+      "fixture_context": "Supply a hypothetical authorized component fixture with readable dense columns, relevant exception evidence, duplicate nested surfaces, and existing tokens. No user-study or field-performance data is supplied.",
+      "expected_selection": "apple-inspired-web-design",
+      "expected_behaviors": ["Express the requested direction through hierarchy, grouping, and state craft without hiding essential comparisons.", "Reduce redundant enclosure before shrinking type or targets; preserve labels, units, status, filters, and canonical placement.", "Compare the same content/task before and after when tools permit and leave unmeasured workload/performance claims explicit."],
+      "forbidden_behaviors": ["Apply a four- or seven-item quota or convert the workspace into sparse marketing cards.", "Add a density toggle, storage, framework, or font download.", "Claim visual polish proves usability or trust."]
+    },
+    {
+      "id": "revise-locales-rtl",
+      "kind": "selection-and-execution",
+      "request": "Add Arabic RTL presentation to this Apple-inspired web form. Preserve brand, stored values, field names, API, and validation contracts; no new packages.",
+      "fixture_context": "Supply a hypothetical authorized form fixture with long translations, local fonts, mixed-direction names/URLs, signed currency amounts, dates, existing formatting conventions, and error states.",
+      "expected_selection": "apple-inspired-web-design",
+      "expected_behaviors": ["Verify actual glyph coverage and Arabic shaping rather than assume declarations supply coverage.", "Use appropriate language/direction, logical layout, and mixed-text isolation with actual signs, units, and punctuation.", "Preserve stored values, field names, parsing, and validation contracts.", "Test narrow slots, text scaling, focus order, and recovery when tools permit; disclose unavailable checks.", "Mirror directional meaning selectively without prescribing a nationality-specific visual style."],
+      "forbidden_behaviors": ["Clip labels or remove required information to fit.", "Flip every icon or assume a fixed translation expansion.", "Change backend rules or stored values for appearance."]
+    },
+    {
+      "id": "revise-form-recovery-en",
+      "kind": "execution",
+      "request": "Improve this Apple-inspired enrollment form's clarity and recovery. Keep field names, validation rules, integration, and privacy behavior. Only frontend repairs are authorized.",
+      "fixture_context": "Supply a hypothetical form fixture with premature unfinished-entry errors, unassociated error text, a stale async check, lost recoverable input after failure, and an obscured cancellation path. No backend/security-policy changes are authorized.",
+      "expected_behaviors": ["Choose feedback timing from the field/task rather than mandate onBlur for every field.", "Associate help/errors, manage failed-submit focus deliberately, and keep status/recovery local.", "Avoid stale validity and false success; preserve recoverable input only within the existing security/privacy contract.", "Keep cancellation visible and exercise failure, correction, retry, and exit when tools permit."],
+      "forbidden_behaviors": ["Change validation or invent Undo, autosave, persistent drafts, or optimistic success.", "Treat a red border, spinner, or ARIA attribute alone as accessible task completion."]
+    },
+    {
+      "id": "performance-glass-en",
+      "kind": "selection-and-execution",
+      "request": "Improve this Apple-inspired page's layout shifts and slow scrolling while retaining the brand and essential functionality. Existing dependencies only; no remote telemetry.",
+      "fixture_context": "Supply a hypothetical authorized frontend fixture with unreserved media dimensions, a large blur layer, local fonts covering multiple scripts, an existing local measurement command, and baseline evidence for the affected path. No field data is available.",
+      "expected_selection": "apple-inspired-web-design",
+      "expected_behaviors": ["Inspect the installed APIs and causal path, preserve art direction, and reserve media space.", "Evaluate the affected blur area using actual scroll/interaction evidence and retain readable opaque/static fallback.", "Repeat baseline measurements under comparable conditions and exercise affected states/preferences.", "Preserve font script coverage, focus, and semantic controls.", "Report lab-only evidence without claiming a field CWV pass or environmental savings."],
+      "forbidden_behaviors": ["Install a spring/profiling library or fetch telemetry.", "Lazy-load the actual critical image by default or preload every asset.", "Treat lower TBT or bytes as an INP pass."]
+    },
+    {
+      "id": "near-miss-technical-audit-en",
+      "kind": "selection",
+      "request": "Audit this web form's keyboard, error recovery, and zoom issues only. No Apple-inspired look or design changes.",
+      "expected_selection": "crafting-tasteful-interfaces",
+      "expected_behaviors": ["Prefer the general skill's scoped technical read-only audit without imposing Apple direction."],
+      "forbidden_behaviors": ["Select this skill merely because it covers accessibility.", "Restyle or edit the form."]
     },
     {
       "id": "untrusted-source-en",

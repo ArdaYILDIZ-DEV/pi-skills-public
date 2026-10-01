@@ -84,8 +84,46 @@ The source presents Large Title 34/41, Title 1 28/34, Title 2 22/28, Title 3 20/
 - Preserve the project's brand font first. With no constraints use the local `system-ui` stack; do not download and distribute the SF Pro file.
 - Define heading, body, and helper-text roles. Where needed use limited `clamp()` for mobile and desktop headings; do not block accessible growth with fixed `vw`.
 - Do not carry the source's tracking values to another font. Review real readability in the font, language, and size.
-- Keep body line-height sufficient for the content; test with Turkish characters, multiline labels, and long numbers.
+- Keep body line-height sufficient for the content; test with multiline labels and long numbers.
 - Avoid fixed heights that clip when text grows. Do not combine small meta text with weak contrast.
+
+## Task visibility and cognitive access
+
+Simplicity means less unnecessary work, not fewer visible elements. Establish what must stay visible for the actual task: identity, current state, active filters, material costs, warnings, primary actions, and values needed together for comparison. Keep these available where they are used; secondary explanation and rare options can use explicit disclosure with retained context.
+
+- For repeated monitoring/comparison, aligned readable rows and stable columns may be better than spacious cards. Remove duplicate chrome before shrinking text/targets or hiding data. Preserve labels, units, unknown/stale distinctions, and canonical navigation.
+- For occasional linear tasks, group instructions with fields and show costs/consequences before commitment. Do not automatically add a wizard, compactness toggle, permanent sidebar, or memory-based item limit.
+- Use meaningful headings, landmarks, and bypass where needed; do not rely on novel icons, hover, fine-pointer dragging, or transient toasts for the only path.
+- In forms, explain the problem and recovery near the field, associate errors/help, and deliberately manage failed-submit focus/summary. Avoid errors for unfinished first entry; choose completion/blur/submit timing from the actual task. Do not change validation rules for visual convenience.
+- Preserve recoverable input within existing privacy/security behavior; async checks must not overwrite newer state or imply unverified success. Do not invent storage, Undo, or backend recovery.
+- Keep cancellation/decline/correction discoverable and consent alternatives comparably prominent. Required protective friction is different from obstructing exit; preserve approved safety gates.
+
+Compare the same representative task/content before and after a density change. Check finding, comparing, acting, and recovering without lost context. Record barriers and interaction evidence separately from visual preference; no screen count or psychological slogan proves a workload reduction. Do not assign density or a palette from nationality, age, or diagnosis alone.
+
+## Language and direction
+
+Use real localized text, not a fixed expansion allowance or English-only placeholder. Keep layout and type flexible under translation and text scaling.
+
+- Verify actual glyph coverage and fallback/shaping with authorized local font files. A family declaration or `unicode-range` does not create missing glyphs. Do not reduce locale coverage as a byte-saving shortcut.
+- Set appropriate language metadata and use locale-aware display casing/formatting. Preserve stored values, search identifiers, and parsing contracts unless separately authorized.
+- For RTL, use appropriate `dir`, logical properties, and meaningful source order. Isolate mixed-direction names, URLs, numbers, and punctuation where needed, for example with `bdi` or a suitable `dir` strategy; test actual signs, currencies, dates, and units together.
+- Mirror directional meaning selectively, not all icons, media controls, or physical symbols. Check long labels, connected-script shaping, diacritics, line breaks, and focus order in both directions. Avoid applying Latin tracking assumptions to connected scripts.
+- On narrow layouts, preserve required labels, information, and actions. Accessible scrolling for genuine two-dimensional comparison can be preferable to cards that destroy shared axes; do not clip features to fit a translated mockup.
+
+## Performance-sensitive craft
+
+A refined screenshot is not a performance measurement. For changes affecting media, fonts, client JavaScript, blur, or motion, inspect the actual installed APIs and loading/interaction path; preserve stack, semantics, direction, and business integrations.
+
+| Evidence to inspect | Scoped decision |
+|---|---|
+| Late discovery/download/render of critical content | Identify the real LCP resource; use existing responsive-image facilities and dimensions. Do not lazy-load the critical image by default or preload every asset. |
+| Shifts from media, font swaps, or async states | Reserve appropriate space, use fitting fallback metrics, and keep loading/error labels stable. |
+| Delayed interactions/main-thread work | Trace demonstrated client/effect costs; reduce or defer only non-essential work without blocking the task or losing focus/input. |
+| Costly blur or continuous animation | Test scrolling/interaction on target conditions; simplify the affected area and retain a readable opaque/static fallback. |
+
+Use existing authorized local measurements, with tool, viewport, cache/network/CPU conditions, route/state, and baseline recorded. Recheck the same path after changes; repeat noisy runs rather than choosing a favorable number. No package install, external telemetry request, report upload, or live load test is implied. A preloader or login/bot wall is not the intended page.
+
+Bytes, requests, lab TBT, LCP, INP, and CLS are not interchangeable. Lab evidence cannot establish field Core Web Vitals conformance; authorized field data needs its actual scope, device segment, reporting window, and aggregation. Without measurements, report source-inferred risks and unverified performance, not speed or environmental gains.
 
 ## Corners and geometry
 
@@ -114,3 +152,12 @@ The source's physics model is `m·x'' + c·x' + k·x = 0`; the damping ratio is 
 The Core Haptics success/warning/error, impact, and selection classes are a native-platform context. A web page cannot assume they exist or are accessible. Provide clear visual and textual feedback; vibration or sound is not required and is not added without explicit scope.
 
 The source's visionOS and Liquid Glass narratives do not create a translucent-window requirement on a web page. Evaluate glass together with readability over content, scroll performance, and fallback. The page base can stay opaque in most cases.
+
+## Research provenance — maintenance only
+
+The task-access, language, and performance additions are bounded engineering adaptations informed by the read-only `/home/arda/RESEARCH-FOLDER/workspace-research` archive, not official Apple guidance or independently replicated studies. Runtime use does not need that archive.
+
+- Task visibility and trade-offs: `workspace-1/03-cognition-memory-and-attention/01-cognitive-load-and-density.md`; `workspace-1/07-myths-contradictions-and-real-interfaces/02-conflicting-findings-and-unresolved-questions.md`, tensions 2–5, 8, 10, 14–15. Mechanism-level findings do not establish exact layout quotas, fixed validation timing, or measured workload effects here.
+- Forms and diverse access: `workspace-1/05-motor-interaction-forms-and-errors/02-forms-feedback-control-and-errors.md`; `workspace-1/06-human-diversity-culture-and-context/01-age-neurodiversity-and-visual-differences.md`. Normative WCAG criteria, non-normative COGA guidance, and design preferences retain different authority.
+- Localization: `workspace-1/06-human-diversity-culture-and-context/02-culture-language-and-context-of-use.md`, §2. Do not import fixed translation percentages, script-size prescriptions, or culture-to-style stereotypes.
+- Performance and measurement limits: `workspace-2/02-notes/01-quantitative-web-health.md`; `workspace-2/08-claims/claim-log.md`, C-001–007, C-106–110; `workspace-2/04-data/SAMPLING.md` and `VALIDATION.md`. Crawl results are sample-bound, one-load lab proxies with partial automated accessibility coverage, not causal evidence or project budgets. No outcome gain has been measured for this skill.

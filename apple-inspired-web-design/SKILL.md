@@ -27,7 +27,7 @@ Extract from the available context: page purpose, target user, primary task, con
 
 Resolve links relative to the directory containing this `SKILL.md` file.
 
-- When translating principles into layout, typography, geometry, or motion, read the [web principles guide](references/principles-for-web.md).
+- When translating principles into layout, typography, geometry, or motion, read the [web principles guide](references/principles-for-web.md). For dense/comparison tasks, forms, localization, or performance-sensitive effects, read its relevant task-access, language, or performance section; the package remains self-contained.
 - When working on color, theme, or material, read the [color guide](references/color-system.md). Tables are source records, not accessibility guarantees.
 - If the project lacks an adequate token system, review the [CSS starter file](assets/web-tokens.css); adapt the needed roles to the existing architecture. Do not include the whole file unconditionally.
 - When evaluating this skill's selection or behavior, use the [scenarios](assets/evaluation-cases.json). Empty `runs` means no test was performed.
@@ -38,14 +38,17 @@ Resolve links relative to the directory containing this `SKILL.md` file.
 
 State the page's primary user task and the primary action supporting it in one sentence. Build content and task order around it. Do not add a hero, slogan, or marketing CTA to every page; a data-dense dashboard needs a different hierarchy.
 
-Do not hide important information for aesthetics. Do not add locking flows, deceptive choices, or unnecessary permission requests. For deletion or irreversible actions, preserve the existing safety and approval behavior.
+Do not hide important information for aesthetics. Keep identity, active filters, comparison values, costs, and consequential state available where decisions are made. Simplicity removes unnecessary work, not essential data; a dense expert workspace can be Apple-inspired without sparse cards. Do not impose a memory-derived item quota or reorder familiar navigation for novelty.
+
+Do not add locking flows, deceptive choices, or unnecessary permission requests. Give consent alternatives comparable prominence and effort. For deletion or irreversible actions, preserve the existing safety and approval behavior; do not invent Undo or optimistic success without operation semantics.
 
 ### 2. Establish content and layout
 
 - Use semantic HTML, logical heading order, and meaningful source order.
 - Group related items with proximity and spacing. Do not put every group inside a card.
 - Treat the 4/8-based scale as the starting preference for spacing; allow exceptions required by typography, optical alignment, and content.
-- Change the layout at the widths where content breaks. On narrow screens navigation and primary actions must stay usable.
+- Change the layout at the widths where content breaks. On narrow screens navigation, labels, comparison information, and primary actions must stay usable; do not hide them to imitate minimalism.
+- Use real translated content and fonts when localization is relevant: test long labels, RTL/BiDi, signs/units, and script shaping. Preserve stored values and parsing contracts; adapt presentation, not data.
 - Do not imitate native app bars or fixed iPhone dimensions. For edge-to-edge fixed controls use CSS safe-area variables where needed.
 
 ### 3. Define the visual system
@@ -65,6 +68,8 @@ Light/dark theme and user theme choice must use the same token system; an explic
 - Measure translucent colors composited over the real background. Do not use placeholder text as a label. Do not carry low-opacity source tokens directly into active helper text.
 - Do not convey error, success, and selection states by color alone; add clear text and marks where needed.
 - Define hover, focus-visible, pressed/selected, disabled, loading, empty, error, and success states on appropriate components. Do not fake a missing data connection or a successful operation.
+- Make task status and recovery local and understandable: associate field help/errors, avoid premature unfinished-entry errors, handle failed-submit focus deliberately, and retain recoverable input within the existing privacy/security contract. Validation timing depends on the field/task, not a universal blur rule.
+- Check meaningful headings/landmarks, bypass, text scaling/spacing, focus occlusion, and alternatives to dragging. Attribute presence or visual polish alone does not establish accessible task completion.
 
 ### 5. Justify motion and material
 
@@ -74,6 +79,8 @@ Remove non-essential motion under `prefers-reduced-motion`; handle JS animations
 
 Use glass only when it explains a layer relationship. Provide an opaque alternative in environments without blur support, with high contrast, or with forced colors. Do not sacrifice readability for decorative transparency.
 
+Inspect performance before adding large blur regions, autoplay media, custom fonts, or client animation. Reuse the existing stack and measure the affected loading/interaction path; Apple-inspired styling is not permission to install libraries, preload everything, or replace accessible primitives. Reserve media space and preserve script coverage and reduced-motion usability while optimizing.
+
 ### 6. Implement and prove
 
 Reuse existing components and tokens. Do not change framework, routing, API, copy, analytics, permission, or data-storage behavior as a side effect of visual editing.
@@ -81,9 +88,10 @@ Reuse existing components and tokens. Do not change framework, routing, API, cop
 Choose verification scope by output:
 
 1. Find the project's existing lint, typecheck, build, or test commands; do not invent commands or install dependencies without permission.
-2. If a browser is available, test narrow/wide views, light/dark themes, keyboard flow, focus, long content, empty/error states, and reduced motion. Check overflow under text scaling and narrow views; do not confuse deliberate scrolling of two-dimensional data tables with page overflow.
-3. Measure contrast of real color pairs; report visual checks and numeric measurements separately. An automated accessibility check is not proof of full conformance.
-4. If browser or screen-reader checks could not run, mark them as not done. Do not present code review as visual verification.
+2. If an authorized browser is available, test narrow/wide views, relevant themes/locales, keyboard flow, focus, long content, empty/error states, and reduced motion. Check overflow under text scaling and narrow views; deliberate accessible table-region scrolling is not page overflow. For density changes, compare the same task/data and check required information, lookup/view-switch burden, and operability—not just whitespace or row counts.
+3. Exercise entry → action → failure/correction → completion/exit, including cancellation/decline where relevant. Measure real contrast pairs; report visual, interaction, and numerical evidence separately. An automated accessibility check is not proof of full conformance.
+4. For performance changes, capture and repeat the relevant baseline under comparable conditions using existing authorized tools. Distinguish lab measurements from field data; lower bytes or TBT does not prove field LCP/INP/CLS conformance.
+5. If browser, screen-reader, task, or performance checks could not run, mark each gap. Do not present code review as visual verification or predict trust, conversion, or workload gains as measured outcomes.
 
 ## Boundaries
 

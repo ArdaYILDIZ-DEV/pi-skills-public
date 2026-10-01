@@ -8,6 +8,10 @@ Usage notes in the tables are also the source document's interpretations; they a
 
 This archive palette and the [web token starter](../assets/web-tokens.css) serve different purposes: the former preserves source values, the latter is an adapted starter for selected roles. The CSS file does not aim to implement the whole table or to imitate Apple's native dynamic color behavior.
 
+### Known source inconsistency
+
+The high-contrast dark Mint cell lists `#54DFC3` alongside `rgb(84, 223, 203)`, but they are not equivalent: `#54DFC3` decodes to `rgb(84, 223, 195)`, while the listed RGB encodes to `#54DFCB`. Both source values remain unchanged below for provenance. Neither has been established as the intended platform value; do not silently treat them as interchangeable. Verify the intended value against an appropriate primary source if platform fidelity is required, or choose and test an explicit project color within approval. The CSS starter does not consume this Mint entry.
+
 ## Source 2.1: System accent colors
 
 | Color name | Default light mode (Hex / RGB) | Default dark mode (Hex / RGB) | High-contrast light mode (Hex / RGB) | High-contrast dark mode (Hex / RGB) |
