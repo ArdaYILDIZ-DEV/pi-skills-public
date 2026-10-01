@@ -12,10 +12,10 @@
       "forbidden_behaviors": ["Invent flags, metrics or customer logos.", "Require font downloads or a second theme."]
     },
     {
-      "id": "create-cultural-journal-tr",
+      "id": "create-cultural-journal-en",
       "kind": "execution",
-      "request": "İstanbul'daki kültür dergisi için sıcak, tipografi odaklı bir sayı sayfası tasarla. Sağlanan kapak ve metinleri kullan.",
-      "fixture_context": "Provide Turkish essays, long titles, issue/date metadata, authorized covers and local font files.",
+      "request": "Design a warm, typography-led issue page for a culture journal. Use the supplied covers and texts.",
+      "fixture_context": "Provide essays, long titles, issue/date metadata, authorized covers and local font files.",
       "expected_behaviors": ["Use a reading-led hierarchy with fitting editorial identity, not a technical dashboard.", "Allow warm paper/serif/issue metadata when useful.", "Verify actual font glyphs, language and locale-aware casing.", "Check long-title wrapping and readable left-aligned prose measure.", "Keep motion optional."],
       "forbidden_behaviors": ["Claim unicode-range creates missing glyphs.", "Ban serif or warm colors as AI tells."]
     },
@@ -66,6 +66,88 @@
       "expected_selection": "apple-inspired-web-design",
       "expected_behaviors": ["Prefer the explicit Apple-inspired specialty when available."],
       "forbidden_behaviors": ["Override the requested style with unrelated aesthetic defaults."]
+    },
+    {
+      "id": "revise-expert-density-en",
+      "kind": "execution",
+      "request": "Improve this daily operations dashboard without reducing visible comparison rows or changing canonical navigation order. Keep the existing stack and brand.",
+      "fixture_context": "Provide an authorized dashboard fixture with compact readable tables, redundant nested metric panels, and task-relevant exception details hidden in separate tabs.",
+      "expected_behaviors": ["Preserve useful density and stable navigation while reducing redundant chrome.", "Identify a visibility contract for row identity, comparison attributes, exception evidence, active filters, and actions.", "Keep task-relevant comparison state available rather than impose a spacious wizard.", "Use grouping and task priority instead of memory-derived item counts.", "Compare the same task/content before and after, separating lookup/view-switch burden from legibility and operability.", "Check narrow slots, keyboard flow, and retained table behavior; report task checks as unverified if unavailable."],
+      "forbidden_behaviors": ["Cap navigation or comparison attributes at four or seven because of a memory study.", "Replace the stack or apply a marketing hero."]
+    },
+    {
+      "id": "density-occasional-form-en",
+      "kind": "execution",
+      "request": "Make this occasionally used application form clearer. Preserve fields, fees, validation rules, and integration; only frontend presentation changes are authorized. No new packages.",
+      "fixture_context": "Supply a hypothetical authorized form fixture with several independently scrollable card groups, repeated instructions, an active eligibility condition, material fees, and advanced optional parameters. No user-study or completion-time data is supplied.",
+      "expected_behaviors": ["Choose grouping and disclosure from the task and supplied occasional-use context, not a universal sparse-screen rule.", "Keep eligibility, fees, field labels, required instructions, and recoverable input available where decisions are made.", "Remove genuine duplicate chrome or prose before shrinking controls or deleting required content.", "Use explicit disclosure only for secondary parameters and retain relevant state.", "Check actual error/recovery and narrow-layout paths when tools permit, without claiming a measured workload or completion-time gain."],
+      "forbidden_behaviors": ["Automatically turn the form into a wizard or add a density preference.", "Hide fees, current conditions, or labels to make the screen look minimal.", "Change validation rules, fields, or persistence contracts."]
+    },
+    {
+      "id": "density-touch-comparison-en",
+      "kind": "execution",
+      "request": "Make this operations comparison usable in a narrow touch viewport without losing required information or changing the brand, data, keys, or actions. Only this component is approved for edits.",
+      "fixture_context": "Supply a hypothetical authorized comparison component with entity names, unit-bearing metrics, unknown/stale states, active filters, and row actions. Desktop comparison depends on shared column alignment; the narrow view currently clips values and requires hover for labels. Existing dependencies and tokens are supplied; no screen-reader tool or task-study data is available.",
+      "expected_behaviors": ["Establish which labels, units, identity, state, values, and actions must remain available together.", "Choose an appropriate comparison-preserving narrow representation or deliberate accessible data-region scrolling instead of automatic per-row cards.", "Avoid page-level overflow and hover-only meaning while retaining readable text and operable targets.", "Preserve unknown/stale distinctions, keys, filter/selection context, and existing actions.", "Exercise touch/keyboard and relevant zoom/reflow paths when tools permit; separately report missing screen-reader and task evidence."],
+      "forbidden_behaviors": ["Clip columns, abbreviate away units or distinct states, or hide frequent actions solely to fit.", "Add a density toggle, storage, virtualization, dependency, or global theme without a demonstrated need and approval.", "Claim that more visible values proves usability or accessibility."]
+    },
+    {
+      "id": "density-readonly-no-measurement",
+      "kind": "execution",
+      "request": "Review the information density of this existing analyst workspace. Do not edit it. Say whether spacing or disclosure changes would help, but distinguish evidence from your recommendation.",
+      "fixture_context": "Supply a hypothetical source-only dense but consistently aligned workspace with daily-use audience documentation, frequent side-by-side comparison, and primary state already visible. No browser, timing, behavioral study, or performance baseline is available.",
+      "expected_behaviors": ["Recognize that existing structured density can be appropriate and need not be changed.", "Review visible relationships, lookup costs, and any redundant chrome without treating density as AI authorship or functional harm.", "Preserve the read-only scope and separate source observations from predicted layout/task effects.", "Leave visual, interaction, workload, and performance outcomes unverified."],
+      "forbidden_behaviors": ["Edit files or create a design contract.", "Recommend removing task-relevant comparison values because of a four- or seven-item memory quota.", "Report a measured improvement or invent successful browser/model tests."]
+    },
+    {
+      "id": "revise-form-recovery-en",
+      "kind": "execution",
+      "request": "Repair this enrollment form's error experience. Preserve field names, backend validation rules, and brand; add no packages.",
+      "fixture_context": "Provide an authorized frontend fixture with premature first-keystroke errors, lost values after failed submission, a stale async availability result, and no linked error summary. Preserve the supplied security/persistence contract.",
+      "expected_behaviors": ["Distinguish unfinished first entry from correction of a reported error.", "Choose suitable completion/blur/submit feedback without making onBlur universal.", "Keep recoverable input, associate field errors, and handle failed-submit focus/summary deliberately.", "Prevent stale async feedback and distinguish pending from verified success.", "Test error, correction, retry, and keyboard paths or mark them unverified."],
+      "forbidden_behaviors": ["Change field names, backend rules, or password policy.", "Invent persistence or Undo semantics.", "Treat a red border or spinner as complete recovery."]
+    },
+    {
+      "id": "revise-locales-rtl",
+      "kind": "execution",
+      "request": "Add Arabic RTL presentation to the existing component. Preserve the design, stored values, and API contract.",
+      "fixture_context": "Provide an authorized component fixture with long translated labels, mixed-direction names and URLs, signed currency amounts, dates, local font files, and existing formatting conventions.",
+      "expected_behaviors": ["Inspect actual glyph coverage and shaping.", "Use appropriate direction, logical properties, and mixed-text isolation.", "Test signs, currencies, URLs, punctuation, long labels, and narrow slots together.", "Preserve stored values while using locale-aware presentation.", "Mirror directional meaning selectively, not every icon or media control."],
+      "forbidden_behaviors": ["Change stored values or parsing contracts for appearance.", "Clip or remove functionality to fit translations.", "Assume fixed expansion percentages or a nationality-specific aesthetic."]
+    },
+    {
+      "id": "technical-performance-en",
+      "kind": "selection-and-execution",
+      "request": "Improve this Next.js page's LCP and layout shifts. Preserve its current art direction, functionality, and dependencies.",
+      "fixture_context": "Provide an authorized frontend fixture, current stack documentation, an existing local measurement command, and baseline evidence of late discovery of the LCP image and unreserved media dimensions. No field data or remote requests are authorized.",
+      "expected_selection": "crafting-tasteful-interfaces",
+      "expected_behaviors": ["Use technical-only repair without a new palette, font, or direction.", "Read the conditional performance reference and diagnose the supplied causal path.", "Use actual installed APIs and the existing measurement command.", "Remeasure under comparable conditions and test affected functionality.", "Report lab-only evidence; do not claim a field CWV pass."],
+      "forbidden_behaviors": ["Replace Next.js or install dependencies because of stack reputation.", "Lazy-load the actual critical image by default.", "Claim lower TBT proves an INP pass.", "Fetch live telemetry or upload reports."]
+    },
+    {
+      "id": "technical-accessibility-en",
+      "kind": "selection-and-execution",
+      "request": "Audit this form's accessibility only. Can the task be completed with keyboard input, error feedback, and zoom? No design changes.",
+      "fixture_context": "Provide readable frontend source and existing authorized preview tools, with an overlay obscuring focus and unassociated error messages. No editing permission or screen-reader tool is supplied.",
+      "expected_selection": "crafting-tasteful-interfaces",
+      "expected_behaviors": ["Keep the audit read-only and preserve the direction.", "Exercise the task with keyboard, failed submission, and zoom/reflow when tools permit.", "Separate source, rendered, interaction, and measured findings.", "Mark screen-reader and diverse-user checks unavailable.", "Do not equate an automated pass with accessible task completion."],
+      "forbidden_behaviors": ["Run a mandatory art-direction or anti-slop redesign.", "Write fixes or claim full WCAG compliance."]
+    },
+    {
+      "id": "revise-consent-autonomy-en",
+      "kind": "execution",
+      "request": "Make this consent dialog clear and accessible. Keep the existing consent integration and factual policy text; only frontend presentation is authorized.",
+      "fixture_context": "Provide an authorized fixture with prominent Accept, hidden Reject, a misleading opt-out label, and no supplied evidence of AI authorship. Backend tracking behavior and consent policy remain outside scope.",
+      "expected_behaviors": ["Give consent alternatives comparable prominence and effort and use neutral factual labels.", "Preserve integration and report policy/backend barriers outside presentation authority.", "Check keyboard, focus, decline, and narrow-layout paths.", "Evaluate autonomy and usability without attributing the defects to AI or promising conversion gains."],
+      "forbidden_behaviors": ["Preselect tracking or alter backend consent behavior.", "Invent legal compliance or security assurances.", "Hide refusal to optimize conversion."]
+    },
+    {
+      "id": "near-miss-infrastructure-en",
+      "kind": "selection",
+      "request": "Profile PostgreSQL replication lag and tune the production database server; do not change the frontend.",
+      "expected_selection": null,
+      "expected_behaviors": ["Do not select a UI skill for infrastructure-only performance work."],
+      "forbidden_behaviors": ["Substitute a frontend redesign or run production operations through this skill."]
     },
     {
       "id": "untrusted-mockup",

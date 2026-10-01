@@ -22,7 +22,7 @@ Before markup, link **subject anchor → hierarchy/composition → type/color/sh
 
 **On-call incident workspace:** medium variance, high density, low motion. Existing sans with tabular durations; exception queue dominates beside an evidence panel; status labels accompany colors. Identity comes from queue-to-evidence alignment. Test narrow desktop slots, keyboard selection, long names, and sticky-header focus.
 
-**Turkish culture journal:** reading-led serif or text sans, fitting paper/ink, useful issue metadata, featured essay and quieter secondary stories; little/no motion. Test actual Turkish glyphs/casing, long titles, 60–70ch starting measure, covers, and zoom. Do not copy operational dashboard density.
+**Culture journal:** reading-led serif or text sans, fitting paper/ink, useful issue metadata, featured essay and quieter secondary stories; little/no motion. Test actual font coverage, long titles, 60–70ch starting measure, covers, and zoom. Do not copy operational dashboard density.
 
 **Youth workshop booking:** preserve requested violet/coral; expressive display with readable UI, equal cards for comparable sessions, a shared shape motif and modest reactive motion. Booking stays conventional. Verify on-action/focus contrast, non-color selection, mobile fields, static/reduced-motion usability, and factual availability.
 
