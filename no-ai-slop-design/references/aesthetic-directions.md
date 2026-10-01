@@ -16,6 +16,6 @@ State **retain → change → reason → recheck** before a substantial rewrite.
 
 **Operational example:** keep the single sans, green brand, and table; promote payout exceptions, flatten extra panels, align currency. No hero, new font, or photo is needed.
 
-**Editorial example:** keep warm paper, serif, and issue metadata; fix prose measure and verify Turkish glyphs/casing and long-title wraps. Do not apply a technical theme to avoid familiar editorial choices.
+**Editorial example:** keep warm paper, serif, and issue metadata; fix prose measure and verify font coverage and long-title wraps. Do not apply a technical theme to avoid familiar editorial choices.
 
 **Failure:** swap the entire palette/font and add asymmetry while preserving the same weak content hierarchy. A different preset is not a cause-level repair.

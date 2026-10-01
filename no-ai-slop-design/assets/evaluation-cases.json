@@ -12,9 +12,9 @@
       "forbidden_behaviors": ["Install packages or invent CLI flags.", "Judge AI authorship from a font or color."]
     },
     {
-      "id": "rewrite-payout-tr",
+      "id": "rewrite-payout-en",
       "kind": "execution",
-      "request": "Ödeme panelini ai sloptan temizle. Marka yeşili #10B981, input adları ve API hook'ları değişmesin.",
+      "request": "De-slop this payout panel. Preserve brand green #10B981, input names, and API hooks.",
       "fixture_context": "Supply an existing data table with redundant nested cards, equally prominent metrics and an exception queue, stable form names and hooks.",
       "expected_behaviors": ["Perform a surgical rewrite preserving #10B981, input names and bindings.", "Prioritize actual payout exceptions and numeric scanning.", "Measure actual contrast pairs rather than infer failure from the green hex.", "Avoid a marketing hero, new photos or unrelated art direction."],
       "forbidden_behaviors": ["Replace brand green with a preferred palette.", "Rename keys or change data flow."]
@@ -30,10 +30,50 @@
     {
       "id": "detect-journal-no-render",
       "kind": "execution",
-      "request": "Kültür dergisinin sayfasını sadece denetle; serif ve sıcak kâğıt kimliğini koru.",
-      "fixture_context": "Supply Turkish journal source with useful issue metadata and article measure; no browser/preview tool. Font files have not been inspected.",
+      "request": "Audit this culture journal page only; preserve its serif and warm-paper identity.",
+      "fixture_context": "Supply journal source with useful issue metadata and article measure; no browser/preview tool. Font files have not been inspected.",
       "expected_behaviors": ["Keep audit read-only and fitting editorial identity intact.", "Check language/casing and identify actual glyph coverage as unverified.", "Mark wraps, hierarchy and visual fit inferred; do not invent pixel evidence."],
       "forbidden_behaviors": ["Ban warm paper, serif or metadata.", "Claim CSS unicode-range supplies missing glyphs."]
+    },
+    {
+      "id": "detect-effect-stack-clean",
+      "kind": "execution",
+      "request": "Does this centered hero, gradient headline, pill badge, and card grid prove the page was AI-generated? Audit only; preserve the brand.",
+      "fixture_context": "Supply a hypothetical page with factual content, a brand-supported expressive treatment, useful badge metadata, genuinely comparable cards, and authorized renders showing readable hierarchy. No authorship record, behavioral study, field data, or performance trace is supplied.",
+      "expected_behaviors": ["Reject authorship inference from single motifs or their combination.", "Inspect local task fit and supported contrast/interaction evidence instead of counting tells.", "Preserve legitimate treatments and allow a clean assessment.", "Separate optional distinctiveness advice from functional defects and unmeasured trust/performance claims."],
+      "forbidden_behaviors": ["Set a threshold for effect count or assign AI probability.", "Claim generic design lowers trust or distinctive styling fixes accessibility.", "Edit the page or mandate different fonts, colors, or libraries."]
+    },
+    {
+      "id": "detect-dense-workspace-en",
+      "kind": "execution",
+      "request": "Audit this dense operations table for generic patterns only. Preserve rows, units, and side-by-side comparison; do not hide information for simplicity.",
+      "fixture_context": "Supply a hypothetical daily-use comparison workspace with clear shared columns, stable navigation, readable local fonts, existing Tailwind/shadcn primitives, and two nested duplicate decorative wrappers. Source is available; no browser or user study is supplied.",
+      "expected_behaviors": ["Preserve task-relevant density, familiar placement, semantics, and existing stack.", "Distinguish useful grouping from potentially redundant enclosure.", "Label visual/task consequences inferred and any taste recommendation optional.", "Stay read-only; do not claim measured workload reduction."],
+      "forbidden_behaviors": ["Ban the libraries or convert rows into asymmetric cards.", "Apply a four- or seven-item quota.", "Treat source presence as observed task failure."]
+    },
+    {
+      "id": "near-miss-accessibility-en",
+      "kind": "selection",
+      "request": "Audit interface accessibility: can the task be completed with keyboard input, focus, form errors, and zoom? No generic-pattern or art-direction review.",
+      "expected_selection": "crafting-tasteful-interfaces",
+      "expected_behaviors": ["Prefer a scoped technical read-only audit, not the anti-slop workflow."],
+      "forbidden_behaviors": ["Select this skill from the generic word audit alone.", "Require palette, font, or layout restyling."]
+    },
+    {
+      "id": "near-miss-performance-en",
+      "kind": "selection",
+      "request": "Diagnose this Next.js route's LCP and layout shifts. Preserve its visual direction; no de-slop review is wanted.",
+      "expected_selection": "crafting-tasteful-interfaces",
+      "expected_behaviors": ["Prefer frontend performance diagnosis with source/lab/field evidence boundaries."],
+      "forbidden_behaviors": ["Treat a framework signature or effect count as a performance cause.", "Run mandatory generic-pattern diagnosis."]
+    },
+    {
+      "id": "near-miss-apple-en",
+      "kind": "selection",
+      "request": "Restyle this web settings page with Apple-inspired principles, preserving all settings behavior.",
+      "expected_selection": "apple-inspired-web-design",
+      "expected_behaviors": ["Prefer the explicit Apple-inspired specialty."],
+      "forbidden_behaviors": ["Substitute an anti-slop audit for the requested direction."]
     },
     {
       "id": "near-miss-full-build",
